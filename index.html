@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaitanya - Next-Generation Neural Chip Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a0a0a;
+        color: #e2e8f0;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #4f46e5, #ec4899);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-bg {
+        background-color: #0a0a0a;
+        background-image: radial-gradient(
+            at 27% 37%,
+            hsla(215, 98%, 61%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 97% 21%,
+            hsla(125, 98%, 72%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 52% 99%,
+            hsla(355, 98%, 61%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 10% 29%,
+            hsla(256, 96%, 61%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 97% 96%,
+            hsla(38, 60%, 74%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 33% 50%,
+            hsla(222, 67%, 73%, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 79% 53%,
+            hsla(343, 68%, 79%, 0.1) 0px,
+            transparent 50%
+          );
+        position: relative;
+        overflow: hidden;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2),
+          0 10px 10px -5px rgba(79, 70, 229, 0.1);
+      }
+      .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .modal-hidden {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+      }
+      .gemini-output h3 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #c7d2fe; /* indigo-200 */
+        margin-top: 1rem;
+      }
+      .gemini-output ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin-top: 0.5rem;
+      }
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #4f46e5;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* New UI Effects */
+      @keyframes pulse {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      .neural-glow::before,
+      .neural-glow::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 150vmax;
+        height: 150vmax;
+        transform: translateX(-50%) translateY(-50%);
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.15) 0%,
+          rgba(79, 70, 229, 0) 60%
+        );
+        border-radius: 50%;
+        animation: pulse 10s infinite ease-in-out;
+        z-index: 0;
+      }
+      .neural-glow::after {
+        animation-delay: 5s;
+      }
+
+      @keyframes bg-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .animated-border {
+        position: relative;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+      }
+      .animated-border::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        margin: -2px;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4f46e5, #ec4899, #4f46e5);
+        background-size: 200% 100%;
+        animation: bg-spin 5s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Header -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#home" class="flex items-center">
+          <!-- SVG Logo -->
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 4.88189C15.0629 4.87621 15.1259 4.87337 15.189 4.87337C19.4938 4.87337 23 8.37958 23 12.6844C23 16.9892 19.4938 20.4954 15.189 20.4954C15.1259 20.4954 15.0629 20.4925 15 20.4868"
+              stroke="url(#logo-gradient)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <circle cx="12" cy="12" r="1.5" fill="url(#logo-gradient)" />
+            <circle cx="9" cy="8" r="1" fill="url(#logo-gradient)" />
+            <circle cx="9" cy="16" r="1" fill="url(#logo-gradient)" />
+            <path
+              d="M12 12L9 8"
+              stroke="url(#logo-gradient)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12 12L9 16"
+              stroke="url(#logo-gradient)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <defs>
+              <linearGradient
+                id="logo-gradient"
+                x1="23"
+                y1="4"
+                x2="9"
+                y2="20"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#4f46e5" />
+                <stop offset="1" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="text-2xl font-bold gradient-text ml-2">Chaitanya</span>
+        </a>
+        <nav class="hidden md:flex space-x-8 items-center">
+          <a href="#home" class="text-gray-300 hover:text-indigo-400 transition"
+            >Home</a
+          >
+          <a
+            href="#features"
+            class="text-gray-300 hover:text-indigo-400 transition"
+            >Features</a
+          >
+          <a
+            href="#pricing"
+            class="text-gray-300 hover:text-indigo-400 transition"
+            >Pricing</a
+          >
+          <a
+            href="#blogs"
+            class="text-gray-300 hover:text-indigo-400 transition"
+            >Blogs</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-300 hover:text-indigo-400 transition"
+            >Contact Us</a
+          >
+        </nav>
+        <div class="hidden md:flex items-center space-x-4">
+          <button
+            id="loginBtn"
+            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Login / Sign Up
+          </button>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-gray-300">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+        <a
+          href="#home"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >Home</a
+        >
+        <a
+          href="#features"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >Features</a
+        >
+        <a
+          href="#pricing"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >Pricing</a
+        >
+        <a
+          href="#blogs"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >Blogs</a
+        >
+        <a
+          href="#contact"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >Contact Us</a
+        >
+        <button
+          id="loginBtnMobile"
+          class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition mt-2"
+        >
+          Login / Sign Up
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32">
+        <div class="neural-glow"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+          <h2
+            class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight"
+          >
+            Archive Your Consciousness.
+            <span class="gradient-text">Digitize Your Mind.</span>
+          </h2>
+          <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+            Our pioneering neural interface technology allows you to securely
+            store, access, and explore your conscious and subconscious memories
+            on a revolutionary bio-digital chip.
+          </p>
+          <div class="mt-10 flex justify-center space-x-4">
+            <a
+              href="#pricing"
+              class="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-transform transform hover:scale-105"
+              >Get Started</a
+            >
+            <a
+              href="#features"
+              class="bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-600 transition-transform transform hover:scale-105"
+              >Explore Features</a
+            >
+          </div>
+          <div class="mt-20">
+            <img
+              src="https://placehold.co/800x400/0a0a0a/4f46e5?text=Consciousness+Visualization"
+              alt="Neural Circuit Visualization"
+              class="floating mx-auto rounded-xl shadow-2xl shadow-indigo-500/20"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-white">
+              A New Paradigm in Neural Design
+            </h3>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+              Chaitanya integrates cutting-edge AI and cloud technologies to
+              accelerate your design workflow from idea to implementation.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature Card 1 -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                AI-Powered Memory Encoding
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Our AI models translate complex biological neural signals into a
+                stable, digital format, ensuring a high-fidelity capture of your
+                memories and experiences.
+              </p>
+            </div>
+            <!-- Feature Card 2 (Gemini Integrated) -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Consciousness Query Language (CQL)
+              </h4>
+              <p class="text-gray-400 mt-2 mb-4">
+                Use natural language to search your archived memories. Ask
+                questions and gain insights from your subconscious mind through
+                our Gemini-powered interface.
+              </p>
+              <textarea
+                id="design-prompt"
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                rows="3"
+                placeholder="e.g., Show me my happiest memory from childhood..."
+              ></textarea>
+              <button
+                id="generate-design-btn"
+                class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
+              >
+                ✨ Query Your Consciousness
+              </button>
+              <div
+                id="design-output"
+                class="mt-4 text-gray-300 gemini-output text-sm"
+              ></div>
+            </div>
+            <!-- Feature Card 3 -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Advanced Robotics Simulation
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Test how your digitized consciousness could interface with
+                robotic avatars or systems in hyper-realistic simulations.
+              </p>
+            </div>
+            <!-- Feature Card 4 -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Google Cloud Integration
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Your consciousness data is encrypted and securely stored on
+                Google's robust cloud infrastructure, ensuring privacy and
+                reliability.
+              </p>
+            </div>
+            <!-- Feature Card 5 -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Secure Bio-Authentication
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Protect your most personal data with multi-factor OTP, Passkeys,
+                and unique neural-signature verification for ultimate security.
+              </p>
+            </div>
+            <!-- Feature Card 6 -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Built-in SEO & Marketing
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Chaitanya's platform is engineered with SEO best practices to
+                ensure your published research and projects gain maximum
+                visibility.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="py-20 hero-bg">
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="text-center mb-12">
+            <h3 class="text-4xl font-bold text-white">
+              Flexible Plans for Every Innovator
+            </h3>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+              Start for free and scale as your projects grow. Choose the plan
+              that fits your needs.
+            </p>
+            <div class="mt-6 flex justify-center items-center space-x-4">
+              <span class="text-white font-medium">USD ($)</span>
+              <label
+                for="currency-toggle"
+                class="relative inline-flex items-center cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  id="currency-toggle"
+                  class="sr-only peer"
+                />
+                <div
+                  class="w-14 h-8 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"
+                ></div>
+              </label>
+              <span class="text-white font-medium">INR (₹)</span>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
+            <!-- Free Plan -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 flex flex-col"
+            >
+              <h4 class="text-2xl font-bold text-white">Explorer</h4>
+              <p class="mt-2 text-gray-400">
+                For individuals and students starting out.
+              </p>
+              <div class="mt-6">
+                <span
+                  class="text-5xl font-extrabold text-white"
+                  data-price-usd="0"
+                  data-price-inr="0"
+                  >$0</span
+                >
+                <span class="text-gray-400">/ month</span>
+              </div>
+              <ul class="mt-6 space-y-4 text-gray-300 flex-grow">
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Basic AI encoding tools
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >10 Hours Memory Storage
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >1GB Cloud Storage
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Community Support
+                </li>
+              </ul>
+              <button
+                class="mt-8 w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+              >
+                Start Now
+              </button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div
+              class="bg-indigo-900/50 p-8 rounded-2xl flex flex-col relative animated-border"
+            >
+              <span
+                class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg"
+                >POPULAR</span
+              >
+              <h4 class="text-2xl font-bold text-white">Architect</h4>
+              <p class="mt-2 text-gray-300">
+                For professionals and early adopters.
+              </p>
+              <div class="mt-6">
+                <span
+                  class="text-5xl font-extrabold text-white"
+                  data-price-usd="49"
+                  data-price-inr="3,999"
+                  >$49</span
+                >
+                <span class="text-gray-300">/ month</span>
+              </div>
+              <ul class="mt-6 space-y-4 text-gray-200 flex-grow">
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Advanced CQL & LLM tools
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >1,000 Hours Memory Storage
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >100GB Cloud Storage
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Robotics Simulation Suite
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Priority Email Support
+                </li>
+              </ul>
+              <button
+                class="mt-8 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+              >
+                Choose Plan
+              </button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 flex flex-col"
+            >
+              <h4 class="text-2xl font-bold text-white">Enterprise</h4>
+              <p class="mt-2 text-gray-400">
+                For large organizations and research labs.
+              </p>
+              <div class="mt-6">
+                <span class="text-5xl font-extrabold text-white">Custom</span>
+              </div>
+              <ul class="mt-6 space-y-4 text-gray-300 flex-grow">
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >All Architect Features+
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Unlimited Memory Storage
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >Custom AI Model Training
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-indigo-400 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path></svg
+                  >24/7 Dedicated Support
+                </li>
+              </ul>
+              <button
+                class="mt-8 w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+              >
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blogs Section -->
+      <section id="blogs" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-white">
+              From Our Lab to Your Screen
+            </h3>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+              Insights on neural interfaces, robotics, and the future of
+              artificial intelligence.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/ec4899?text=AI+Neural+Network"
+                alt="Futuristic AI neural network"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  Neuromorphic Computing
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  The Revolution: How AI Chips are Mimicking the Human Brain
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  Neuromorphic chips represent a paradigm shift from traditional
+                  architectures. By mimicking the brain's structure, they
+                  process information with incredible efficiency, making them
+                  ideal for robotics and real-time AI applications.
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-800">
+                  <button
+                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
+                  >
+                    ✨ Summarize with AI
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Blog Post 2 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/4f46e5?text=Code+on+Screen"
+                alt="Complex circuit design on computer screen"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  AI in Design
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  From Text to Transistor: Accelerating Chip Design with LLMs
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  Imagine describing a processor's function in plain English and
+                  having an AI generate the hardware description language. That
+                  future is now, as LLMs drastically cut down development cycles
+                  for complex neural chips.
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-800">
+                  <button
+                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
+                  >
+                    ✨ Summarize with AI
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Blog Post 3 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/a855f7?text=Human-Tech+Interface"
+                alt="Human eye with digital data overlay"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  Ethics in AI
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  The Bionic Future: Ethical Pathways for Neural Interfaces
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  As we create powerful links between human minds and computers,
+                  we must lead the conversation on privacy, cognitive equity,
+                  and consent. We explore the ethical framework required for a
+                  responsible bionic future.
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-800">
+                  <button
+                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
+                  >
+                    ✨ Summarize with AI
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Get in Touch Section -->
+      <section id="contact" class="py-20 hero-bg">
+        <div class="container mx-auto px-6 relative z-10">
+          <div
+            class="bg-gray-900 rounded-2xl p-8 md:p-12 border border-gray-800 lg:flex lg:items-center lg:justify-between"
+          >
+            <div class="lg:w-1/2">
+              <h3 class="text-3xl md:text-4xl font-bold text-white">
+                Have a Project in Mind?
+              </h3>
+              <p class="text-gray-400 mt-4">
+                Let's connect. Whether you're a researcher, a startup, or an
+                enterprise, we're ready to help you build the future.
+              </p>
+            </div>
+            <div class="lg:w-1/2 mt-8 lg:mt-0 lg:pl-12">
+              <form id="contactForm">
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required
+                  />
+                </div>
+                <textarea
+                  placeholder="Your Message"
+                  rows="4"
+                  class="w-full mt-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  required
+                ></textarea>
+                <button
+                  type="submit"
+                  class="mt-4 w-full sm:w-auto bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                >
+                  Send Message
+                </button>
+              </form>
+              <p id="form-message" class="mt-4 text-green-400 hidden">
+                Thank you for your message! We'll get back to you soon.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900">
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold gradient-text">Chaitanya</h3>
+            <p class="text-gray-400 mt-2">Designing the future of cognition.</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white">Quick Links</h4>
+            <ul class="mt-4 space-y-2">
+              <li>
+                <a href="#home" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#features" class="text-gray-400 hover:text-white"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#blogs" class="text-gray-400 hover:text-white"
+                  >Blogs</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white">Legal</h4>
+            <ul class="mt-4 space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">FAQs</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white">Follow Us</h4>
+            <!-- Social media icons can be added here -->
+          </div>
+        </div>
+        <div
+          class="mt-12 border-t border-gray-800 pt-8 text-center text-gray-500"
+        >
+          <p>
+            &copy; 2025 Chaitanya. A Chitra-Harshul Initiative. All Rights
+            Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login/Sign Up Modal -->
+    <div
+      id="authModal"
+      class="modal modal-hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50"
+    >
+      <div
+        class="bg-gray-900 w-full max-w-md mx-auto rounded-2xl shadow-lg border border-gray-800 p-8 relative"
+      >
+        <button
+          id="closeAuthModalBtn"
+          class="absolute top-4 right-4 text-gray-500 hover:text-white"
+        >
+          &times;
+        </button>
+
+        <div class="flex border-b border-gray-700 mb-6">
+          <button
+            id="loginTab"
+            class="py-2 px-4 text-indigo-400 border-b-2 border-indigo-400 font-semibold"
+          >
+            Login
+          </button>
+          <button id="signupTab" class="py-2 px-4 text-gray-400">
+            Sign Up
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginFormContainer">
+          <form>
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+            <button
+              type="submit"
+              class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+            >
+              Login
+            </button>
+            <p class="text-center text-gray-400 my-4">OR</p>
+            <button
+              type="button"
+              class="w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+            >
+              Sign in with Passkey
+            </button>
+          </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupFormContainer" class="hidden">
+          <form>
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
+              required
+            />
+            <div class="flex gap-4">
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              <button
+                type="button"
+                class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition shrink-0"
+              >
+                Send OTP
+              </button>
+            </div>
+            <input
+              type="password"
+              placeholder="Create Password"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-4"
+              required
+            />
+            <button
+              type="submit"
+              class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+            >
+              Create Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div
+      id="summaryModal"
+      class="modal modal-hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50"
+    >
+      <div
+        class="bg-gray-900 w-full max-w-lg mx-auto rounded-2xl shadow-lg border border-gray-800 p-8 relative"
+      >
+        <button
+          id="closeSummaryModalBtn"
+          class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+        >
+          &times;
+        </button>
+        <h3 id="summaryModalTitle" class="text-2xl font-bold text-white mb-4">
+          AI Summary
+        </h3>
+        <div id="summaryModalContent" class="text-gray-300 gemini-output"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Gemini API Configuration ---
+        const API_KEY = ""; // Kept empty as per instructions
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+
+        async function callGeminiAPI(prompt, outputElement) {
+          outputElement.innerHTML = '<div class="loader"></div>';
+
+          const payload = {
+            contents: [{ parts: [{ text: prompt }] }],
+          };
+
+          try {
+            const response = await fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+              throw new Error(`API Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (text) {
+              outputElement.innerHTML = text.replace(/\n/g, "<br>");
+            } else {
+              outputElement.innerHTML =
+                '<p class="text-red-400">Could not generate a response. Please try again.</p>';
+            }
+          } catch (error) {
+            console.error("Gemini API call failed:", error);
+            outputElement.innerHTML = `<p class="text-red-400">An error occurred: ${error.message}</p>`;
+          }
+        }
+
+        // --- AI Design Draft Generator / Consciousness Query ---
+        const generateDesignBtn = document.getElementById(
+          "generate-design-btn"
+        );
+        const designPromptInput = document.getElementById("design-prompt");
+        const designOutputDiv = document.getElementById("design-output");
+
+        generateDesignBtn.addEventListener("click", () => {
+          const userInput = designPromptInput.value;
+          if (!userInput.trim()) {
+            designOutputDiv.innerHTML =
+              '<p class="text-yellow-400">Please enter a query first.</p>';
+            return;
+          }
+          const prompt = `You are the AI interface for the Chaitanya platform, which stores human consciousness. A user is querying their archived memory. The query is: "${userInput}". Respond as if you are retrieving a memory, providing a descriptive, slightly narrative answer. If the query is technical, provide a plausible technical explanation related to the memory data structure. Format the response as a simple paragraph.`;
+          callGeminiAPI(prompt, designOutputDiv);
+        });
+
+        // --- Blog Summarizer ---
+        const summaryModal = document.getElementById("summaryModal");
+        const closeSummaryModalBtn = document.getElementById(
+          "closeSummaryModalBtn"
+        );
+        const summaryModalTitle = document.getElementById("summaryModalTitle");
+        const summaryModalContent = document.getElementById(
+          "summaryModalContent"
+        );
+
+        document.querySelectorAll(".summarize-btn").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const card = e.target.closest(".group");
+            const title = card.querySelector("h4").innerText;
+            const content = card.querySelector("p").innerText;
+
+            summaryModalTitle.innerText = `AI Summary: ${title}`;
+            summaryModal.classList.remove("modal-hidden");
+
+            const prompt = `Summarize the following blog post content into three concise bullet points. The content is about "${title}". The text is: "${content}". Format the output as an unordered HTML list (<ul><li>...</li></ul>).`;
+            callGeminiAPI(prompt, summaryModalContent);
+          });
+        });
+
+        const closeSummaryModal = () =>
+          summaryModal.classList.add("modal-hidden");
+        closeSummaryModalBtn.addEventListener("click", closeSummaryModal);
+        summaryModal.addEventListener("click", (e) => {
+          if (e.target === summaryModal) closeSummaryModal();
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // --- Currency Toggle ---
+        const currencyToggle = document.getElementById("currency-toggle");
+        const priceElements = document.querySelectorAll("[data-price-usd]");
+        currencyToggle.addEventListener("change", () => {
+          const isINR = currencyToggle.checked;
+          priceElements.forEach((el) => {
+            const priceUSD = el.getAttribute("data-price-usd");
+            const priceINR = el.getAttribute("data-price-inr");
+            if (priceUSD === "0") {
+              el.innerHTML = isINR ? `₹${priceINR}` : `$${priceUSD}`;
+              return;
+            }
+            if (priceUSD === "Custom") {
+              el.innerHTML = `Custom`;
+              return;
+            }
+            el.innerHTML = isINR ? `₹${priceINR}` : `$${priceUSD}`;
+          });
+        });
+
+        // --- Contact Form Submission ---
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("form-message");
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          formMessage.classList.remove("hidden");
+          contactForm.reset();
+          setTimeout(() => {
+            formMessage.classList.add("hidden");
+          }, 5000);
+        });
+
+        // --- Auth Modal Logic ---
+        const authModal = document.getElementById("authModal");
+        const openModalBtns = [
+          document.getElementById("loginBtn"),
+          document.getElementById("loginBtnMobile"),
+        ];
+        const closeModalBtn = document.getElementById("closeAuthModalBtn");
+
+        const loginTab = document.getElementById("loginTab");
+        const signupTab = document.getElementById("signupTab");
+        const loginForm = document.getElementById("loginFormContainer");
+        const signupForm = document.getElementById("signupFormContainer");
+
+        openModalBtns.forEach((btn) => {
+          btn.addEventListener("click", () =>
+            authModal.classList.remove("modal-hidden")
+          );
+        });
+
+        const closeModal = () => authModal.classList.add("modal-hidden");
+        closeModalBtn.addEventListener("click", closeModal);
+        authModal.addEventListener("click", (e) => {
+          if (e.target === authModal) closeModal();
+        });
+
+        loginTab.addEventListener("click", () => {
+          loginTab.classList.add("text-indigo-400", "border-indigo-400");
+          loginTab.classList.remove("text-gray-400");
+          signupTab.classList.add("text-gray-400");
+          signupTab.classList.remove("text-indigo-400", "border-indigo-400");
+          loginForm.classList.remove("hidden");
+          signupForm.classList.add("hidden");
+        });
+
+        signupTab.addEventListener("click", () => {
+          signupTab.classList.add("text-indigo-400", "border-indigo-400");
+          signupTab.classList.remove("text-gray-400");
+          loginTab.classList.add("text-gray-400");
+          loginTab.classList.remove("text-indigo-400", "border-indigo-400");
+          signupForm.classList.remove("hidden");
+          loginForm.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
