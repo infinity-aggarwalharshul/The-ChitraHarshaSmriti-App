@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Adventures of Harchi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IM+Fell+English&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "IM Fell English", serif;
+        background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .title-font {
+        font-family: "Cinzel", serif;
+        text-shadow: 0 0 10px rgba(255, 223, 186, 0.7),
+          0 0 20px rgba(255, 223, 186, 0.5);
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        width: clamp(300px, 90vw, 600px);
+        height: clamp(300px, 90vw, 600px);
+        border: 4px solid #c0c0c0; /* Silver border */
+        border-image: linear-gradient(to right, #c0c0c0, #ffd700) 1;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+      }
+      .board-cell.light {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .board-cell.dark {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .board-cell.valid-move:hover {
+        background-color: rgba(104, 211, 145, 0.5);
+        cursor: pointer;
+        outline: 2px solid gold;
+      }
+      .character-piece {
+        transition: all 0.3s ease-in-out;
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+        width: 90%;
+        height: 90%;
+      }
+      .character-piece:hover {
+        transform: scale(1.1);
+      }
+
+      /* Game Style Button */
+      .game-btn {
+        background: linear-gradient(145deg, #5c529a, #3b3561);
+        border: 2px solid #a49fc4;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+          inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        transition: all 0.2s ease-in-out;
+      }
+      .game-btn:hover {
+        background: linear-gradient(145deg, #6c60b5, #4a427a);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4),
+          inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      }
+      #game-modal .modal-content {
+        background: rgba(40, 37, 68, 0.95);
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+        backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body class="text-gray-200 overflow-hidden">
+    <!-- SVG Definitions for Characters -->
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <g id="harchi-svg">
+          <circle cx="50" cy="50" r="45" fill="#2c3e50" />
+          <path
+            d="M 30 40 Q 50 20 70 40"
+            stroke="#1a1a1a"
+            stroke-width="12"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <circle cx="40" cy="55" r="5" fill="white" />
+          <circle cx="38" cy="55" r="2" fill="black" />
+          <circle cx="60" cy="55" r="5" fill="white" />
+          <circle cx="58" cy="55" r="2" fill="black" />
+          <path
+            d="M 45 70 Q 50 75 55 70"
+            stroke="white"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </g>
+        <g id="chitrahi-svg">
+          <circle cx="50" cy="50" r="45" fill="#e74c3c" />
+          <path
+            d="M25,50 C40,20 60,20 75,50 M20 60 C30 90, 70 90, 80 60 Q 50 80 20 60"
+            fill="#1a1a1a"
+          />
+          <circle cx="40" cy="55" r="5" fill="white" />
+          <circle cx="38" cy="55" r="2" fill="black" />
+          <circle cx="60" cy="55" r="5" fill="white" />
+          <circle cx="58" cy="55" r="2" fill="black" />
+          <path
+            d="M 48 68 A 5 5 0 0 1 52 68"
+            stroke="white"
+            stroke-width="2"
+            fill="none"
+          />
+        </g>
+        <g id="boss-svg">
+          <rect x="10" y="10" width="80" height="80" rx="15" fill="#8e44ad" />
+          <path
+            d="M 30 35 L 40 45 M 40 35 L 30 45"
+            stroke="red"
+            stroke-width="6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M 60 35 L 70 45 M 70 35 L 60 45"
+            stroke="red"
+            stroke-width="6"
+            stroke-linecap="round"
+          />
+          <rect x="30" y="65" width="40" height="10" fill="#2c3e50" />
+          <rect x="35" y="65" width="5" height="5" fill="white" />
+          <rect x="45" y="65" width="5" height="5" fill="white" />
+          <rect x="55" y="65" width="5" height="5" fill="white" />
+        </g>
+      </defs>
+    </svg>
+
+    <div
+      id="game-container"
+      class="flex flex-col lg:flex-row h-screen p-4 gap-4"
+    >
+      <!-- Left Panel: Game Board & Map -->
+      <div class="flex-grow flex flex-col items-center justify-center gap-4">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-center tracking-wider title-font"
+        >
+          The Adventures of Harchi
+        </h1>
+        <div id="board-container" class="board"></div>
+        <div
+          id="map"
+          class="w-full h-32 lg:h-48 rounded-lg border-2 border-gray-600 bg-gray-800"
+        >
+          <div
+            class="w-full h-full flex items-center justify-center text-gray-400"
+          >
+            GPS Location Unlocks at Level 2
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel: UI & Information -->
+      <div
+        class="w-full lg:w-96 bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 shadow-2xl flex flex-col gap-4 overflow-y-auto border border-gray-700"
+      >
+        <div>
+          <h2
+            id="character-name"
+            class="text-2xl font-bold text-yellow-400 title-font"
+          >
+            Harchi
+          </h2>
+          <p>Level: <span id="current-level">1</span></p>
+          <div
+            class="w-full bg-gray-700 rounded-full h-4 mt-2 border-2 border-gray-600"
+          >
+            <div
+              id="player-health"
+              class="bg-green-500 h-full rounded-full transition-all duration-500"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+        <div>
+          <h2 id="boss-name" class="text-xl font-bold text-red-400 title-font">
+            Level Boss
+          </h2>
+          <div
+            class="w-full bg-gray-700 rounded-full h-4 mt-2 border-2 border-gray-600"
+          >
+            <div
+              id="boss-health"
+              class="bg-red-500 h-full rounded-full transition-all duration-500"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+        <hr class="border-gray-600" />
+        <div>
+          <h3 class="text-lg font-semibold mb-2 title-font">Unlocked Powers</h3>
+          <div id="powers-list" class="flex flex-wrap gap-2"></div>
+        </div>
+        <hr class="border-gray-600" />
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold title-font">Hint</h3>
+            <button
+              id="ai-hint-btn"
+              class="game-btn text-xs font-bold py-1 px-3 rounded-full"
+            >
+              Get AI Hint ✨
+            </button>
+          </div>
+          <div
+            id="hint-box"
+            class="bg-black/30 p-3 rounded-md text-cyan-300 min-h-[60px] transition-colors border border-gray-700"
+          >
+            Click a valid move to start!
+          </div>
+        </div>
+        <button
+          id="switch-character-btn"
+          class="hidden w-full game-btn p-2 rounded-lg font-bold"
+        >
+          Switch to Chitrahi
+        </button>
+      </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div
+      id="game-modal"
+      class="hidden fixed inset-0 flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="modal-content p-8 rounded-lg shadow-xl text-center max-w-sm mx-auto animate-pulse-once"
+      >
+        <h2
+          id="modal-title"
+          class="text-4xl font-bold mb-4 title-font text-yellow-300"
+        >
+          Welcome!
+        </h2>
+        <p id="modal-text" class="text-gray-300 mb-6 text-lg">
+          Start your adventure!
+        </p>
+        <button
+          id="modal-button"
+          class="game-btn text-white font-bold py-2 px-6 rounded-lg text-xl"
+        >
+          Start Level 1
+        </button>
+      </div>
+    </div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHGdjgH-Jejk31-okkq_QKztlw-7VdxrI&callback=initMap"
+      async
+      defer
+    ></script>
+
+    <script>
+      // --- DOM Elements ---
+      const boardContainer = document.getElementById("board-container");
+      const levelDisplay = document.getElementById("current-level");
+      const hintBox = document.getElementById("hint-box");
+      const powersList = document.getElementById("powers-list");
+      const modal = document.getElementById("game-modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalText = document.getElementById("modal-text");
+      const modalButton = document.getElementById("modal-button");
+      const playerHealthBar = document.getElementById("player-health");
+      const bossHealthBar = document.getElementById("boss-health");
+      const characterNameDisplay = document.getElementById("character-name");
+      const bossNameDisplay = document.getElementById("boss-name");
+      const switchCharBtn = document.getElementById("switch-character-btn");
+      const aiHintBtn = document.getElementById("ai-hint-btn");
+
+      // --- Game State ---
+      let gameState = {
+        currentLevel: 1,
+        player: {
+          character: "harchi", // 'harchi' or 'chitrahi'
+          x: 0,
+          y: 7,
+          health: 100,
+          maxHealth: 100,
+          powers: ["Step"],
+          hasSword: false,
+        },
+        boss: {
+          x: 7,
+          y: 0,
+          health: 100,
+          maxHealth: 100,
+        },
+        chitrahiUnlocked: false,
+        gameActive: false,
+      };
+
+      // --- Level Data ---
+      const levelsData = {
+        1: {
+          name: "Rookie Goblin",
+          location: "Gateway of India, Mumbai",
+          lat: 18.922,
+          lng: 72.8347,
+          hint: "The first step is always the hardest. Move one square at a time.",
+          power: "GPS Location",
+        },
+        2: {
+          name: "Clever Imp",
+          location: "Hawa Mahal, Jaipur",
+          lat: 26.9239,
+          lng: 75.8267,
+          hint: "Think outside the box, or in this case, on the diagonals.",
+          power: "Diagonal Step",
+        },
+        3: {
+          name: "Stone Golem",
+          location: "Taj Mahal, Agra",
+          lat: 27.1751,
+          lng: 78.0421,
+          hint: "This foe is slow but hits hard. A straight path is its weakness.",
+          power: "Rook's Move",
+        },
+        4: {
+          name: "Jumping Spider",
+          location: "Mysore Palace, Mysuru",
+          lat: 12.3052,
+          lng: 76.6552,
+          hint: "It leaps in an 'L' shape. Can you do the same?",
+          power: "Knight's Move",
+        },
+        5: {
+          name: "Wise Bishop",
+          location: "Vatican City",
+          lat: 41.9029,
+          lng: 12.4534,
+          hint: "It sticks to its color. Use that to your advantage.",
+          power: "Bishop's Move",
+        },
+        10: {
+          name: "Gatekeeper Griffin",
+          location: "Eiffel Tower, Paris",
+          lat: 48.8584,
+          lng: 2.2945,
+          hint: "The Gatekeeper protects a great treasure. Defeat it to unlock a new hero!",
+          power: "Unlock Chitrahi",
+        },
+        100: {
+          name: "MEGA BOSS DRAGON",
+          location: "Mount Everest, Nepal",
+          lat: 27.9881,
+          lng: 86.925,
+          hint: "The final challenge! All your skills will be tested. Time for the final blow!",
+          power: "The Hero's Sword",
+        },
+      };
+
+      let map;
+
+      // --- Gemini API Integration ---
+      async function getAiHint() {
+        const levelData = levelsData[gameState.currentLevel] || levelsData[100];
+        if (!levelData) return;
+
+        hintBox.textContent = "Thinking of a clever hint...";
+        hintBox.classList.add("animate-pulse");
+        aiHintBtn.disabled = true;
+
+        const systemPrompt =
+          "You are a witty and encouraging game assistant for the turn-based chess-like adventure game, 'The Adventures of Harchi'. Your goal is to provide a creative, one-sentence hint to the player. The hint should be strategic but not too obvious. Frame it in a fun, adventurous tone. Do not repeat the original hint.";
+        const userQuery = `Game Context:\n- Player: ${
+          gameState.player.character
+        }\n- Level: ${gameState.currentLevel}\n- Boss: ${
+          levelData.name
+        }\n- Player Pos: (${gameState.player.x}, ${
+          gameState.player.y
+        })\n- Boss Pos: (${gameState.boss.x}, ${
+          gameState.boss.y
+        })\n- Powers: ${gameState.player.powers.join(
+          ", "
+        )}\n- Original Hint: "${
+          levelData.hint
+        }"\n\nGive me a new, creative hint.`;
+
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: userQuery }] }],
+              systemInstruction: { parts: [{ text: systemPrompt }] },
+            }),
+          });
+
+          if (!response.ok)
+            throw new Error(`API call failed: ${response.status}`);
+          const result = await response.json();
+          const candidate = result.candidates?.[0];
+          hintBox.textContent =
+            candidate?.content?.parts?.[0]?.text ||
+            "Couldn't get a hint. Trust your instincts!";
+        } catch (error) {
+          console.error("Error fetching AI hint:", error);
+          hintBox.textContent =
+            "My crystal ball is cloudy... Try again in a moment!";
+        } finally {
+          hintBox.classList.remove("animate-pulse");
+          aiHintBtn.disabled = false;
+        }
+      }
+
+      function initMap() {
+        const defaultLocation = { lat: 20.5937, lng: 78.9629 };
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: defaultLocation,
+          zoom: 4,
+          disableDefaultUI: true,
+          styles: [
+            {
+              featureType: "all",
+              elementType: "all",
+              stylers: [
+                { invert_lightness: true },
+                { saturation: -100 },
+                { lightness: 0 },
+                { gamma: 0.5 },
+                { hue: "#D7A32B" },
+              ],
+            },
+          ],
+        });
+      }
+
+      function updateMapLocation(lat, lng, name) {
+        if (map && gameState.currentLevel > 1) {
+          const location = { lat, lng };
+          map.setCenter(location);
+          map.setZoom(14);
+          new google.maps.Marker({
+            position: location,
+            map: map,
+            title: name,
+          });
+          document.getElementById("map").innerHTML = "";
+          map.getDiv().style.width = "100%";
+          map.getDiv().style.height = "100%";
+          document.getElementById("map").appendChild(map.getDiv());
+        }
+      }
+
+      // --- Game Logic ---
+      function createBoard() {
+        boardContainer.innerHTML = "";
+        for (let y = 0; y < 8; y++) {
+          for (let x = 0; x < 8; x++) {
+            const cell = document.createElement("div");
+            cell.classList.add(
+              "board-cell",
+              (x + y) % 2 === 0 ? "light" : "dark"
+            );
+            cell.dataset.x = x;
+            cell.dataset.y = y;
+            boardContainer.appendChild(cell);
+          }
+        }
+        placeCharacters();
+        highlightValidMoves();
+      }
+
+      function placeCharacters() {
+        document
+          .querySelectorAll(".character-piece")
+          .forEach((el) => el.remove());
+        const playerCell = document.querySelector(
+          `[data-x="${gameState.player.x}"][data-y="${gameState.player.y}"]`
+        );
+        if (playerCell) {
+          const playerSvg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+          );
+          playerSvg.setAttribute("viewBox", "0 0 100 100");
+          playerSvg.classList.add("character-piece");
+          const use = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "use"
+          );
+          use.setAttributeNS(
+            "http://www.w3.org/1999/xlink",
+            "href",
+            gameState.player.character === "harchi"
+              ? "#harchi-svg"
+              : "#chitrahi-svg"
+          );
+          playerSvg.appendChild(use);
+          playerCell.appendChild(playerSvg);
+
+          if (gameState.player.hasSword) {
+            const swordDiv = document.createElement("div");
+            swordDiv.innerHTML = `<svg class="absolute bottom-0 right-0 w-1/2 h-1/2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold"><path d="M22.41,2.59a1,1,0,0,0-1.41,0L18,5.59V3a1,1,0,0,0-2,0V8.41l-2.29-2.29a1,1,0,0,0-1.42,0l-3,3a1,1,0,0,0,0,1.42L11.59,13H9a1,1,0,0,0,0,2h4.41l-2.29,2.29a1,1,0,0,0,0,1.42l3,3a1,1,0,0,0,1.42,0L18,19.41V22a1,1,0,0,0,2,0V16.59l3-3a1,1,0,0,0,0-1.41L19.41,8.59,22.41,5.59A1,1,0,0,0,22.41,2.59Z"/></svg>`;
+            playerSvg.appendChild(swordDiv);
+          }
+        }
+
+        const bossCell = document.querySelector(
+          `[data-x="${gameState.boss.x}"][data-y="${gameState.boss.y}"]`
+        );
+        if (bossCell) {
+          const bossSvg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+          );
+          bossSvg.setAttribute("viewBox", "0 0 100 100");
+          bossSvg.classList.add("character-piece");
+          const use = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "use"
+          );
+          use.setAttributeNS(
+            "http://www.w3.org/1999/xlink",
+            "href",
+            "#boss-svg"
+          );
+          bossSvg.appendChild(use);
+          bossCell.appendChild(bossSvg);
+        }
+      }
+
+      function getValidMoves(x, y, powers) {
+        const moves = [];
+        const directions = {
+          step: [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0],
+          ],
+          diagonal: [
+            [1, 1],
+            [1, -1],
+            [-1, 1],
+            [-1, -1],
+          ],
+          knight: [
+            [1, 2],
+            [1, -2],
+            [-1, 2],
+            [-1, -2],
+            [2, 1],
+            [2, -1],
+            [-2, 1],
+            [-2, -1],
+          ],
+        };
+        if (powers.includes("Step"))
+          moves.push(...directions.step.map(([dx, dy]) => [x + dx, y + dy]));
+        if (powers.includes("Diagonal Step"))
+          moves.push(
+            ...directions.diagonal.map(([dx, dy]) => [x + dx, y + dy])
+          );
+        if (powers.includes("Knight's Move"))
+          moves.push(...directions.knight.map(([dx, dy]) => [x + dx, y + dy]));
+        if (powers.includes("Rook's Move"))
+          for (let i = 1; i < 8; i++)
+            moves.push([x + i, y], [x - i, y], [x, y + i], [x, y - i]);
+        if (powers.includes("Bishop's Move"))
+          for (let i = 1; i < 8; i++)
+            moves.push(
+              [x + i, y + i],
+              [x + i, y - i],
+              [x - i, y + i],
+              [x - i, y - i]
+            );
+        return moves.filter(
+          ([nx, ny]) => nx >= 0 && nx < 8 && ny >= 0 && ny < 8
+        );
+      }
+
+      function highlightValidMoves() {
+        document.querySelectorAll(".valid-move").forEach((cell) => {
+          cell.classList.remove("valid-move");
+          cell.onclick = null;
+        });
+        const validMoves = getValidMoves(
+          gameState.player.x,
+          gameState.player.y,
+          gameState.player.powers
+        );
+        validMoves.forEach(([nx, ny]) => {
+          const cell = document.querySelector(
+            `[data-x="${nx}"][data-y="${ny}"]`
+          );
+          if (cell) {
+            cell.classList.add("valid-move");
+            cell.onclick = handlePlayerMove;
+          }
+        });
+      }
+
+      function handlePlayerMove(event) {
+        if (!gameState.gameActive) return;
+        gameState.player.x = parseInt(event.currentTarget.dataset.x);
+        gameState.player.y = parseInt(event.currentTarget.dataset.y);
+        createBoard();
+        if (checkCombat()) return;
+        setTimeout(bossTurn, 500);
+      }
+
+      function bossTurn() {
+        if (!gameState.gameActive) return;
+        const { x: px, y: py } = gameState.player;
+        const { x: bx, y: by } = gameState.boss;
+        let bestMove = [bx, by];
+        let minDistance = 100;
+        [
+          [0, 1],
+          [0, -1],
+          [1, 0],
+          [-1, 0],
+        ].forEach(([dx, dy]) => {
+          const nx = bx + dx,
+            ny = by + dy;
+          if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8) {
+            const distance = Math.hypot(px - nx, py - ny);
+            if (distance < minDistance) {
+              minDistance = distance;
+              bestMove = [nx, ny];
+            }
+          }
+        });
+        gameState.boss.x = bestMove[0];
+        gameState.boss.y = bestMove[1];
+        createBoard();
+        checkCombat();
+      }
+
+      function checkCombat() {
+        if (
+          Math.abs(gameState.player.x - gameState.boss.x) <= 1 &&
+          Math.abs(gameState.player.y - gameState.boss.y) <= 1
+        ) {
+          gameState.boss.health -= gameState.player.hasSword ? 50 : 25;
+          gameState.player.health -= 20;
+          updateUI();
+          checkEndConditions();
+          return true;
+        }
+        return false;
+      }
+
+      function checkEndConditions() {
+        if (gameState.boss.health <= 0) {
+          gameState.gameActive = false;
+          const power = (levelsData[gameState.currentLevel] || {}).power;
+          if (power === "Unlock Chitrahi") {
+            gameState.chitrahiUnlocked = true;
+            switchCharBtn.classList.remove("hidden");
+            showModal(
+              "Hero Unlocked!",
+              "You have rescued Chitrahi! You can now switch characters.",
+              "Continue Adventure"
+            );
+          } else if (power === "The Hero's Sword") {
+            gameState.player.hasSword = true;
+            showModal(
+              "Victory!",
+              "You defeated the MEGA BOSS! You are a true hero!",
+              "Play Again?"
+            );
+            gameState.currentLevel = 0;
+          } else {
+            if (power) gameState.player.powers.push(power);
+            showModal(
+              "Victory!",
+              `You beat Level ${gameState.currentLevel} and unlocked: "${power}"!`,
+              `Start Level ${gameState.currentLevel + 1}`
+            );
+          }
+          gameState.currentLevel++;
+        } else if (gameState.player.health <= 0) {
+          gameState.gameActive = false;
+          showModal(
+            "Game Over",
+            `You were defeated on Level ${gameState.currentLevel}.`,
+            "Try Again"
+          );
+        }
+      }
+
+      function updateUI() {
+        levelDisplay.textContent = gameState.currentLevel;
+        const levelData = levelsData[gameState.currentLevel] || levelsData[100];
+        if (!hintBox.classList.contains("animate-pulse"))
+          hintBox.textContent = levelData.hint;
+        bossNameDisplay.textContent = levelData.name;
+        powersList.innerHTML = "";
+        gameState.player.powers.forEach((power) => {
+          const p = document.createElement("div");
+          p.className =
+            "bg-blue-500/50 text-white text-sm font-semibold px-3 py-1 rounded-full border border-blue-300";
+          p.textContent = power;
+          powersList.appendChild(p);
+        });
+        playerHealthBar.style.width = `${Math.max(
+          0,
+          gameState.player.health
+        )}%`;
+        bossHealthBar.style.width = `${Math.max(
+          0,
+          (gameState.boss.health / gameState.boss.maxHealth) * 100
+        )}%`;
+        characterNameDisplay.textContent =
+          gameState.player.character === "harchi" ? "Harchi" : "Chitrahi";
+        if (levelData)
+          updateMapLocation(levelData.lat, levelData.lng, levelData.location);
+      }
+
+      function showModal(title, text, buttonText) {
+        modalTitle.textContent = title;
+        modalText.textContent = text;
+        modalButton.textContent = buttonText;
+        modal.classList.remove("hidden");
+      }
+
+      function startLevel() {
+        gameState.gameActive = true;
+        modal.classList.add("hidden");
+        gameState.player.health = gameState.player.maxHealth;
+        gameState.boss.health = gameState.currentLevel === 100 ? 500 : 100;
+        gameState.boss.maxHealth = gameState.boss.health;
+        gameState.player.x = 0;
+        gameState.player.y = 7;
+        gameState.boss.x = 7;
+        gameState.boss.y = 0;
+        if (gameState.currentLevel === 0) {
+          gameState.currentLevel = 1;
+          gameState.player.powers = ["Step"];
+          gameState.player.hasSword = false;
+        }
+        updateUI();
+        createBoard();
+      }
+
+      function switchCharacter() {
+        gameState.player.character =
+          gameState.player.character === "harchi" ? "chitrahi" : "harchi";
+        switchCharBtn.textContent = `Switch to ${
+          gameState.player.character === "harchi" ? "Chitrahi" : "Harchi"
+        }`;
+        updateUI();
+        createBoard();
+      }
+
+      // --- Event Listeners ---
+      modalButton.addEventListener("click", startLevel);
+      switchCharBtn.addEventListener("click", switchCharacter);
+      aiHintBtn.addEventListener("click", getAiHint);
+
+      // --- Initial Load ---
+      window.addEventListener("load", () => {
+        showModal(
+          "The Adventures of Harchi",
+          "An evil force has captured the brave warrior Chitrahi. Embark on a journey across the world to save her and defeat the darkness!",
+          "Start Adventure"
+        );
+      });
+    </script>
+  </body>
+</html>
