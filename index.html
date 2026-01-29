@@ -1,9 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChitraHarsha Smriti - Next-Generation Neural Chip Design</title>
+    <title>ChitraHarsha Smriti - Commercial Enterprise Software 2026</title>
+    <!-- SEO & Social Media -->
+    <meta
+      name="description"
+      content="ChitraHarsha Smriti: The world's first Quantum AI-powered consciousness archival and enterprise data management platform. Future-ready for 2026."
+    />
+    <meta
+      property="og:title"
+      content="ChitraHarsha Smriti - Digitize Your Mind"
+    />
+    <meta
+      property="og:description"
+      content="Pioneering enterprise software for consciousness management and quantum data analysis."
+    />
+    <meta
+      property="og:url"
+      content="https://github.com/infinity-aggarwalharshul/The-ChitraHarshaSmriti-App"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -23,7 +41,8 @@
       }
       .hero-bg {
         background-color: #0a0a0a;
-        background-image: radial-gradient(
+        background-image:
+          radial-gradient(
             at 27% 37%,
             hsla(215, 98%, 61%, 0.1) 0px,
             transparent 50%
@@ -77,27 +96,52 @@
       }
       .card-hover:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2),
+        box-shadow:
+          0 20px 25px -5px rgba(79, 70, 229, 0.2),
           0 10px 10px -5px rgba(79, 70, 229, 0.1);
       }
-      .modal {
-        transition: opacity 0.3s ease, transform 0.3s ease;
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
       }
       .modal-hidden {
-        opacity: 0;
-        transform: scale(0.95);
         pointer-events: none;
       }
-      .gemini-output h3 {
+      .modal-hidden .modal-overlay {
+        opacity: 0;
+      }
+      .modal-hidden .modal-content {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      .modal-body h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+      .modal-body h3 {
         font-size: 1.25rem;
         font-weight: bold;
-        color: #c7d2fe; /* indigo-200 */
-        margin-top: 1rem;
+        color: #c7d2fe;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
       }
-      .gemini-output ul {
+      .modal-body p,
+      .modal-body li {
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+      .modal-body ul {
         list-style-type: disc;
         padding-left: 1.5rem;
-        margin-top: 0.5rem;
+      }
+      .modal-body strong {
+        color: #e2e8f0;
       }
       .loader {
         border: 4px solid #f3f3f3;
@@ -116,8 +160,6 @@
           transform: rotate(360deg);
         }
       }
-
-      /* New UI Effects */
       @keyframes pulse {
         0% {
           transform: scale(0.8);
@@ -152,7 +194,6 @@
       .neural-glow::after {
         animation-delay: 5s;
       }
-
       @keyframes bg-spin {
         to {
           transform: rotate(360deg);
@@ -177,6 +218,34 @@
         background-size: 200% 100%;
         animation: bg-spin 5s linear infinite;
       }
+      /* Lightning Effect */
+      .lightning-border {
+        position: relative;
+        border: 2px solid transparent;
+      }
+      .lightning-border::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        z-index: -1;
+        background: conic-gradient(
+          from 90deg at 50% 50%,
+          #4f46e5,
+          #ec4899,
+          #a855f7,
+          #4f46e5
+        );
+        animation: spin 4s linear infinite;
+        filter: blur(5px);
+      }
+      /* Tab styling */
+      .tab-btn {
+        transition: all 0.3s ease;
+      }
+      .tab-btn.active {
+        color: #ec4899;
+        border-color: #ec4899;
+      }
     </style>
   </head>
   <body class="overflow-x-hidden">
@@ -188,7 +257,6 @@
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
         <a href="#home" class="flex items-center">
-          <!-- SVG Logo -->
           <svg
             width="32"
             height="32"
@@ -245,15 +313,27 @@
             >Features</a
           >
           <a
-            href="#pricing"
-            class="text-gray-300 hover:text-indigo-400 transition"
-            >Pricing</a
-          >
-          <a
             href="#blogs"
             class="text-gray-300 hover:text-indigo-400 transition"
             >Blogs</a
           >
+          <a
+            href="#admin"
+            class="text-gray-300 hover:text-indigo-400 transition"
+            >ERP Portal</a
+          >
+          <a
+            href="https://github.com/infinity-aggarwalharshul/The-ChitraHarshaSmriti-App.git"
+            class="text-gray-300 hover:text-indigo-400 transition flex items-center"
+            target="_blank"
+          >
+            <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+            GitHub
+          </a>
           <a
             href="#contact"
             class="text-gray-300 hover:text-indigo-400 transition"
@@ -262,8 +342,8 @@
         </nav>
         <div class="hidden md:flex items-center space-x-4">
           <button
-            id="loginBtn"
-            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+            data-modal-target="loginModal"
+            class="login-btn bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
           >
             Login / Sign Up
           </button>
@@ -285,7 +365,6 @@
           </svg>
         </button>
       </div>
-      <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
         <a
           href="#home"
@@ -298,14 +377,20 @@
           >Features</a
         >
         <a
-          href="#pricing"
-          class="block text-gray-300 hover:text-indigo-400 transition"
-          >Pricing</a
-        >
-        <a
           href="#blogs"
           class="block text-gray-300 hover:text-indigo-400 transition"
           >Blogs</a
+        >
+        <a
+          href="#admin"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          >ERP Portal</a
+        >
+        <a
+          href="https://github.com/infinity-aggarwalharshul/The-ChitraHarshaSmriti-App.git"
+          class="block text-gray-300 hover:text-indigo-400 transition"
+          target="_blank"
+          >GitHub Repository</a
         >
         <a
           href="#contact"
@@ -313,8 +398,8 @@
           >Contact Us</a
         >
         <button
-          id="loginBtnMobile"
-          class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition mt-2"
+          data-modal-target="loginModal"
+          class="login-btn w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition mt-2"
         >
           Login / Sign Up
         </button>
@@ -326,6 +411,14 @@
       <section id="home" class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32">
         <div class="neural-glow"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
+          <div
+            class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/50 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-8"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"
+            ></span>
+            <span>2026 Commercial Edition</span>
+          </div>
           <h2
             class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight"
           >
@@ -333,28 +426,21 @@
             <span class="gradient-text">Digitize Your Mind.</span>
           </h2>
           <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Our pioneering neural interface technology allows you to securely
-            store, access, and explore your conscious and subconscious memories
-            on a revolutionary bio-digital chip.
+            Our pioneering enterprise software, powered by Quantum AI, allows
+            you to securely manage and explore human consciousness and complex
+            enterprise data.
           </p>
           <div class="mt-10 flex justify-center space-x-4">
-            <a
-              href="#pricing"
-              class="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-transform transform hover:scale-105"
-              >Get Started</a
+            <button
+              class="download-trigger bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-transform transform hover:scale-105"
             >
-            <a
-              href="#features"
-              class="bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-600 transition-transform transform hover:scale-105"
-              >Explore Features</a
+              Get Started
+            </button>
+            <button
+              class="download-trigger bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-600 transition-transform transform hover:scale-105"
             >
-          </div>
-          <div class="mt-20">
-            <img
-              src="https://placehold.co/800x400/0a0a0a/4f46e5?text=Consciousness+Visualization"
-              alt="Neural Circuit Visualization"
-              class="floating mx-auto rounded-xl shadow-2xl shadow-indigo-500/20"
-            />
+              Download Client
+            </button>
           </div>
         </div>
       </section>
@@ -364,412 +450,324 @@
         <div class="container mx-auto px-6">
           <div class="text-center mb-16">
             <h3 class="text-4xl font-bold text-white">
-              A Commercial-Grade Platform for Digital Consciousness
+              The Future-Ready Enterprise Platform
             </h3>
             <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-              ChitraHarsha Smriti is engineered for security, scalability, and
-              performance, ready for real-world applications and research.
+              An unparalleled suite of tools for the new age of data and
+              consciousness.
             </p>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Feature Card 1 -->
             <div
               class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
             >
               <h4 class="text-2xl font-bold text-white">
-                State-of-the-Art Memory Encoding
+                Quantum & Supercomputing
               </h4>
               <p class="text-gray-400 mt-2">
-                Our continuously evolving AI models translate biological neural
-                signals into a stable, digital format with industry-leading
-                fidelity.
+                Leverage the immense power of quantum and supercomputers for
+                processing speeds previously unimaginable.
               </p>
             </div>
-            <!-- Feature Card 2 (Gemini Integrated) -->
             <div
               class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
             >
               <h4 class="text-2xl font-bold text-white">
-                Consciousness Query Language (CQL)
+                AI-Powered Image Scan
               </h4>
-              <p class="text-gray-400 mt-2 mb-4">
-                Use natural language to search your archived memories. Gain
-                insights from your subconscious mind through our Gemini-powered
-                interface.
+              <p class="text-gray-400 mt-2">
+                Scan, identify, and query visual data just like Google Lens, but
+                integrated into your enterprise workflow.
               </p>
-              <textarea
-                id="design-prompt"
-                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                rows="3"
-                placeholder="e.g., Show me my happiest memory from childhood..."
-              ></textarea>
-              <button
-                id="generate-design-btn"
-                class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
-              >
-                ✨ Query Your Consciousness
-              </button>
-              <div
-                id="design-output"
-                class="mt-4 text-gray-300 gemini-output text-sm"
-              ></div>
             </div>
-            <!-- Feature Card 3 -->
             <div
               class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
             >
               <h4 class="text-2xl font-bold text-white">
-                Advanced Robotics Simulation
+                The ChitraHarsha Crypto (CHC)
               </h4>
               <p class="text-gray-400 mt-2">
-                Test how your digitized consciousness could interface with
-                robotic avatars or systems in hyper-realistic, enterprise-grade
-                simulations.
+                A native, secure cryptocurrency for seamless transactions and
+                investments within our ecosystem.
               </p>
             </div>
-            <!-- Feature Card 4 - NEW -->
-            <div
-              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300 lg:col-span-2"
-            >
-              <h4 class="text-2xl font-bold text-white">
-                Secure & Scalable Backend
-              </h4>
-              <p class="text-gray-400 mt-2">
-                Your data is protected by a blockchain management system for
-                immutable encryption and auditable integrity. Powered by Google
-                Cloud and BigQuery, our backend ensures massive scalability for
-                data storage and complex SQL-based neural queries.
-              </p>
-            </div>
-            <!-- Feature Card 6 -->
             <div
               class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
             >
               <h4 class="text-2xl font-bold text-white">
-                Built-in SEO & Marketing
+                Secure Desktop Client
               </h4>
               <p class="text-gray-400 mt-2">
-                Our platform is engineered with SEO best practices to ensure
-                your published research and projects gain maximum visibility
-                online.
+                Access your data through our dedicated, encrypted desktop
+                software for an enhanced, native experience.
+              </p>
+            </div>
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                Proactive Security Suite
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Includes Safe Browsing and actively monitors the dark web for
+                credential leaks to keep your account secure.
+              </p>
+            </div>
+            <div
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-hover transition-all duration-300"
+            >
+              <h4 class="text-2xl font-bold text-white">
+                SEO & Marketing Ready
+              </h4>
+              <p class="text-gray-400 mt-2">
+                Engineered with SEO best practices from the ground up to ensure
+                maximum visibility and organic growth.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Pricing Section -->
-      <section id="pricing" class="py-20 hero-bg">
+      <!-- Blogs Section -->
+      <section id="blogs" class="py-20 hero-bg">
         <div class="container mx-auto px-6 relative z-10">
-          <div class="text-center mb-12">
+          <div class="text-center mb-16">
             <h3 class="text-4xl font-bold text-white">
-              Flexible Plans for Every Innovator
+              From Our Lab to Your Screen
             </h3>
             <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-              Start for free and scale as your projects grow. Choose the plan
-              that fits your needs.
+              Insights on neural interfaces, quantum AI, and the future of
+              enterprise technology.
             </p>
-            <div class="mt-6 flex justify-center items-center space-x-4">
-              <span class="text-white font-medium">USD ($)</span>
-              <label
-                for="currency-toggle"
-                class="relative inline-flex items-center cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  id="currency-toggle"
-                  class="sr-only peer"
-                />
-                <div
-                  class="w-14 h-8 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"
-                ></div>
-              </label>
-              <span class="text-white font-medium">INR (₹)</span>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col card-hover transition-all duration-300"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/ec4899?text=Quantum+Computing"
+                alt="Quantum Computing Visualization"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  Future Tech
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  The Quantum Leap: How Quantum AI Will Redefine Enterprise Data
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  Beyond binary, quantum computing promises to solve problems
+                  current supercomputers can't touch. Discover its impact on AI
+                  and data analysis.
+                </p>
+                <button
+                  data-modal-target="blog1Modal"
+                  class="modal-trigger mt-4 text-indigo-400 font-semibold hover:text-indigo-300 text-left"
+                >
+                  Read More &rarr;
+                </button>
+              </div>
+            </div>
+            <!-- Blog Post 2 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col card-hover transition-all duration-300"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/4f46e5?text=Blockchain+Security"
+                alt="Blockchain Security Graphic"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  Security
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  Decentralized Trust: Why Blockchain is the Future of Data
+                  Security
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  Learn how our blockchain management system provides an
+                  immutable, transparent, and tamper-proof ledger for all your
+                  critical enterprise data.
+                </p>
+                <button
+                  data-modal-target="blog2Modal"
+                  class="modal-trigger mt-4 text-indigo-400 font-semibold hover:text-indigo-300 text-left"
+                >
+                  Read More &rarr;
+                </button>
+              </div>
+            </div>
+            <!-- Blog Post 3 -->
+            <div
+              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col card-hover transition-all duration-300"
+            >
+              <img
+                src="https://placehold.co/600x400/1a1a1a/a855f7?text=Neural+Interface"
+                alt="Human-Tech Neural Interface"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-indigo-400 uppercase tracking-wider">
+                  Neurotechnology
+                </p>
+                <h4 class="text-xl font-bold text-white mt-2">
+                  The Ethics of a Digital Mind: Navigating the Future of
+                  Consciousness
+                </h4>
+                <p class="text-gray-400 mt-2 text-sm flex-grow">
+                  As we pioneer the ability to digitize consciousness, we are
+                  also leading the conversation on the ethical frameworks
+                  required to ensure this technology benefits all of humanity.
+                </p>
+                <button
+                  data-modal-target="blog3Modal"
+                  class="modal-trigger mt-4 text-indigo-400 font-semibold hover:text-indigo-300 text-left"
+                >
+                  Read More &rarr;
+                </button>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
-            <!-- Free Plan -->
+      <!-- Roadmap Section [NEW] -->
+      <section
+        id="roadmap"
+        class="py-20 bg-black overflow-hidden border-t border-gray-900"
+      >
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-white">Project Roadmap 2026</h3>
+            <p class="text-gray-400 mt-4">
+              Pioneering the next frontier of human-AI integration.
+            </p>
+          </div>
+          <div class="relative">
+            <!-- Timeline Line -->
             <div
-              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 flex flex-col"
-            >
-              <h4 class="text-2xl font-bold text-white">Explorer</h4>
-              <p class="mt-2 text-gray-400">
-                For individuals and students starting out.
-              </p>
-              <div class="mt-6">
-                <span
-                  class="text-5xl font-extrabold text-white"
-                  data-price-usd="0"
-                  data-price-inr="0"
-                  >$0</span
-                >
-                <span class="text-gray-400">/ month</span>
+              class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-indigo-900/50 hidden md:block"
+            ></div>
+
+            <div class="space-y-12">
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 text-right hidden md:block">
+                  <h4 class="text-2xl font-bold text-indigo-400">Q1 2026</h4>
+                  <p class="text-gray-400">
+                    Commercial Rollout & Enterprise SDK
+                  </p>
+                </div>
+                <div
+                  class="w-10 h-10 bg-indigo-600 rounded-full border-4 border-gray-900 z-10"
+                ></div>
+                <div class="md:w-1/2 md:pl-12">
+                  <div
+                    class="bg-gray-900 p-6 rounded-2xl border border-gray-800"
+                  >
+                    <h4 class="text-xl font-bold text-white md:hidden">
+                      Q1 2026
+                    </h4>
+                    <p class="text-gray-400">
+                      Global expansion of ChitraHarsha Smriti for corporate
+                      archival and quantum-ready data processing.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <ul class="mt-6 space-y-4 text-gray-300 flex-grow">
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 order-2 md:order-1">
+                  <div
+                    class="bg-gray-900 p-6 rounded-2xl border border-gray-800 text-right"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Basic AI encoding tools
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >10 Hours Memory Storage
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >1GB Cloud Storage
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Community Support
-                </li>
+                    <h4 class="text-xl font-bold text-white md:hidden">
+                      Q2 2026
+                    </h4>
+                    <p class="text-gray-400 text-center md:text-right">
+                      Neural Consciousness Archival (NCA) Beta. Early access for
+                      premium users to digital mind mapping.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-10 h-10 bg-pink-600 rounded-full border-4 border-gray-900 z-10 order-1 md:order-2"
+                ></div>
+                <div class="md:w-1/2 md:pl-12 hidden md:block order-3">
+                  <h4 class="text-2xl font-bold text-pink-400">Q2 2026</h4>
+                  <p class="text-gray-400">Neural Sync & Beta Mind-Mapping</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section [NEW] -->
+      <section id="pricing" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-white">Commercial Licensing</h3>
+            <p class="text-gray-400 mt-4">
+              Select the tier that fits your evolution.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div
+              class="bg-black p-8 rounded-2xl border border-gray-800 card-hover"
+            >
+              <h4 class="text-xl font-bold text-white">Individual</h4>
+              <p class="text-4xl font-extrabold text-indigo-400 mt-4">
+                $49<span class="text-lg text-gray-500 font-normal">/mo</span>
+              </p>
+              <ul class="mt-6 space-y-4 text-gray-400">
+                <li>✓ 1TB Quantum Storage</li>
+                <li>✓ Basic Memory Archival</li>
+                <li>✓ Standard AI Support</li>
               </ul>
               <button
-                class="mt-8 w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+                class="w-full mt-8 py-3 rounded-lg border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white transition"
               >
-                Start Now
+                Get Started
               </button>
             </div>
-
-            <!-- Pro Plan -->
             <div
-              class="bg-indigo-900/50 p-8 rounded-2xl flex flex-col relative animated-border"
+              class="bg-indigo-900/20 p-8 rounded-2xl border-2 border-indigo-600 card-hover relative"
             >
               <span
-                class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg"
-                >POPULAR</span
+                class="absolute top-0 right-0 bg-indigo-600 text-white px-3 py-1 rounded-bl-lg text-xs font-bold uppercase"
+                >Popular</span
               >
-              <h4 class="text-2xl font-bold text-white">Architect</h4>
-              <p class="mt-2 text-gray-300">
-                For professionals and early adopters.
+              <h4 class="text-xl font-bold text-white">Enterprise</h4>
+              <p class="text-4xl font-extrabold text-white mt-4">
+                $299<span class="text-lg text-gray-400 font-normal">/mo</span>
               </p>
-              <div class="mt-6">
-                <span
-                  class="text-5xl font-extrabold text-white"
-                  data-price-usd="49"
-                  data-price-inr="3,999"
-                  >$49</span
-                >
-                <span class="text-gray-300">/ month</span>
-              </div>
-              <ul class="mt-6 space-y-4 text-gray-200 flex-grow">
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Advanced CQL & LLM tools
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >1,000 Hours Memory Storage
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >100GB Cloud Storage
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Robotics Simulation Suite
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Priority Email Support
-                </li>
+              <ul class="mt-6 space-y-4 text-gray-300">
+                <li>✓ Unlimited Neural Data</li>
+                <li>✓ Full Blockchain Ledger</li>
+                <li>✓ 24/7 Quantum Support</li>
+                <li>✓ Multi-User ERP Access</li>
               </ul>
               <button
-                class="mt-8 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                class="w-full mt-8 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/30"
               >
-                Choose Plan
+                Select Enterprise
               </button>
             </div>
-
-            <!-- Enterprise Plan -->
             <div
-              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 flex flex-col"
+              class="bg-black p-8 rounded-2xl border border-gray-800 card-hover"
             >
-              <h4 class="text-2xl font-bold text-white">Enterprise</h4>
-              <p class="mt-2 text-gray-400">
-                For large organizations and research labs.
-              </p>
-              <div class="mt-6">
-                <span class="text-5xl font-extrabold text-white">Custom</span>
-              </div>
-              <ul class="mt-6 space-y-4 text-gray-300 flex-grow">
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >All Architect Features+
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Unlimited Memory Storage
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Blockchain-Verified Provenance
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >Custom AI Model Training
-                </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-5 h-5 text-indigo-400 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path></svg
-                  >24/7 Dedicated Support
-                </li>
+              <h4 class="text-xl font-bold text-white">Custom</h4>
+              <p class="text-4xl font-extrabold text-pink-400 mt-4">Contact</p>
+              <ul class="mt-6 space-y-4 text-gray-400">
+                <li>✓ Dedicated Supercluster</li>
+                <li>✓ Consciousness White-labeling</li>
+                <li>✓ Institutional Integration</li>
               </ul>
               <button
-                class="mt-8 w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+                class="w-full mt-8 py-3 rounded-lg border border-gray-600 text-gray-400 hover:border-white hover:text-white transition"
               >
                 Contact Sales
               </button>
@@ -778,109 +776,117 @@
         </div>
       </section>
 
-      <!-- Blogs Section -->
-      <section id="blogs" class="py-20 bg-black">
+      <!-- Neural Testimonials Section [NEW] -->
+      <section
+        id="testimonials"
+        class="py-20 bg-black border-t border-gray-900"
+      >
         <div class="container mx-auto px-6">
           <div class="text-center mb-16">
-            <h3 class="text-4xl font-bold text-white">
-              From Our Lab to Your Screen
-            </h3>
-            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-              Insights on neural interfaces, robotics, and the future of
-              artificial intelligence.
-            </p>
+            <h3 class="text-4xl font-bold text-white">Neural Testimonials</h3>
+            <p class="text-gray-400 mt-4">Voices from the digital frontier.</p>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Blog Post 1 -->
             <div
-              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 relative overflow-hidden group"
             >
-              <img
-                src="https://placehold.co/600x400/1a1a1a/ec4899?text=AI+Neural+Network"
-                alt="Futuristic AI neural network"
-                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <p class="text-sm text-indigo-400 uppercase tracking-wider">
-                  Neuromorphic Computing
-                </p>
-                <h4 class="text-xl font-bold text-white mt-2">
-                  The Revolution: How AI Chips are Mimicking the Human Brain
-                </h4>
-                <p class="text-gray-400 mt-2 text-sm flex-grow">
-                  Neuromorphic chips represent a paradigm shift from traditional
-                  architectures. By mimicking the brain's structure, they
-                  process information with incredible efficiency, making them
-                  ideal for robotics and real-time AI applications.
-                </p>
-                <div class="mt-4 pt-4 border-t border-gray-800">
-                  <button
-                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
-                  >
-                    ✨ Summarize with AI
-                  </button>
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+              >
+                <svg
+                  class="w-12 h-12 text-indigo-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H11.017V6H21.017V15C21.017 17.7614 18.7784 20 16.017 20H14.017V21ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V11C5.017 11.5523 4.56929 12 4.017 12H2.017V6H12.017V15C12.017 17.7614 9.77843 20 7.017 20H5.017V21Z"
+                  />
+                </svg>
+              </div>
+              <p class="text-gray-300 italic mb-6">
+                "ChitraHarsha Smriti didn't just digitize my records; it allowed
+                our founding CEO's wisdom to be interactive for our 2026
+                strategy meetings. It's transcendental."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white mr-4"
+                >
+                  EL
+                </div>
+                <div>
+                  <h5 class="text-white font-bold">Elena Lorentz</h5>
+                  <p class="text-gray-500 text-sm">CTO, Nexus Corp</p>
                 </div>
               </div>
             </div>
-            <!-- Blog Post 2 -->
             <div
-              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 relative overflow-hidden group"
             >
-              <img
-                src="https://placehold.co/600x400/1a1a1a/4f46e5?text=Code+on+Screen"
-                alt="Complex circuit design on computer screen"
-                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <p class="text-sm text-indigo-400 uppercase tracking-wider">
-                  AI in Design
-                </p>
-                <h4 class="text-xl font-bold text-white mt-2">
-                  From Text to Transistor: Accelerating Chip Design with LLMs
-                </h4>
-                <p class="text-gray-400 mt-2 text-sm flex-grow">
-                  Imagine describing a processor's function in plain English and
-                  having an AI generate the hardware description language. That
-                  future is now, as LLMs drastically cut down development cycles
-                  for complex neural chips.
-                </p>
-                <div class="mt-4 pt-4 border-t border-gray-800">
-                  <button
-                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
-                  >
-                    ✨ Summarize with AI
-                  </button>
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+              >
+                <svg
+                  class="w-12 h-12 text-pink-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H11.017V6H21.017V15C21.017 17.7614 18.7784 20 16.017 20H14.017V21ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V11C5.017 11.5523 4.56929 12 4.017 12H2.017V6H12.017V15C12.017 17.7614 9.77843 20 7.017 20H5.017V21Z"
+                  />
+                </svg>
+              </div>
+              <p class="text-gray-300 italic mb-6">
+                "Managing quantum data streams felt like a nightmare until we
+                integrated CHS. The AI-powered image scan works with almost
+                psychic precision."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-pink-600 flex items-center justify-center font-bold text-white mr-4"
+                >
+                  MK
+                </div>
+                <div>
+                  <h5 class="text-white font-bold">Marcus Kane</h5>
+                  <p class="text-gray-500 text-sm">
+                    Lead Researcher, BioDyamic
+                  </p>
                 </div>
               </div>
             </div>
-            <!-- Blog Post 3 -->
             <div
-              class="bg-gray-900 rounded-2xl overflow-hidden group flex flex-col"
+              class="bg-gray-900 p-8 rounded-2xl border border-gray-800 relative overflow-hidden group"
             >
-              <img
-                src="https://placehold.co/600x400/1a1a1a/a855f7?text=Human-Tech+Interface"
-                alt="Human eye with digital data overlay"
-                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <p class="text-sm text-indigo-400 uppercase tracking-wider">
-                  Ethics in AI
-                </p>
-                <h4 class="text-xl font-bold text-white mt-2">
-                  The Bionic Future: Ethical Pathways for Neural Interfaces
-                </h4>
-                <p class="text-gray-400 mt-2 text-sm flex-grow">
-                  As we create powerful links between human minds and computers,
-                  we must lead the conversation on privacy, cognitive equity,
-                  and consent. We explore the ethical framework required for a
-                  responsible bionic future.
-                </p>
-                <div class="mt-4 pt-4 border-t border-gray-800">
-                  <button
-                    class="summarize-btn text-indigo-400 font-semibold hover:text-indigo-300 w-full text-left"
-                  >
-                    ✨ Summarize with AI
-                  </button>
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+              >
+                <svg
+                  class="w-12 h-12 text-indigo-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H11.017V6H21.017V15C21.017 17.7614 18.7784 20 16.017 20H14.017V21ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V11C5.017 11.5523 4.56929 12 4.017 12H2.017V6H12.017V15C12.017 17.7614 9.77843 20 7.017 20H5.017V21Z"
+                  />
+                </svg>
+              </div>
+              <p class="text-gray-300 italic mb-6">
+                "The CHC crypto integration is the smoothest enterprise payment
+                system I've used. No gas fees, instant finality on the
+                ChitraHarsha chain."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white mr-4"
+                >
+                  ST
+                </div>
+                <div>
+                  <h5 class="text-white font-bold">Sarah Tan</h5>
+                  <p class="text-gray-500 text-sm">
+                    Fintech Lead, Global Ledger
+                  </p>
                 </div>
               </div>
             </div>
@@ -888,11 +894,242 @@
         </div>
       </section>
 
-      <!-- Get in Touch Section -->
-      <section id="contact" class="py-20 hero-bg">
-        <div class="container mx-auto px-6 relative z-10">
+      <!-- ERP Portal & Dashboard Showcase [ENHANCED] -->
+      <section id="admin" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
           <div
-            class="bg-gray-900 rounded-2xl p-8 md:p-12 border border-gray-800 lg:flex lg:items-center lg:justify-between"
+            class="bg-gray-900 rounded-3xl overflow-hidden border border-gray-800 shadow-2xl relative"
+          >
+            <!-- Glass Header -->
+            <div
+              class="bg-gray-800/50 backdrop-blur-md px-8 py-6 flex justify-between items-center border-b border-gray-700"
+            >
+              <div class="flex items-center space-x-6">
+                <h3 class="text-2xl font-bold text-white">
+                  ERP Enterprise Portal
+                </h3>
+                <div class="flex space-x-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex items-center text-sm font-mono text-indigo-400"
+                >
+                  <span
+                    class="w-2 h-2 rounded-full bg-indigo-500 mr-2 animate-pulse"
+                  ></span>
+                  SYST: OPTIMAL (v2026.1)
+                </div>
+                <button
+                  class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition"
+                >
+                  Switch User
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row h-[500px]">
+              <!-- Sidebar -->
+              <div
+                class="w-full lg:w-64 bg-black/50 p-6 border-r border-gray-800 flex flex-col"
+              >
+                <nav class="space-y-2">
+                  <button
+                    class="tab-btn active w-full text-left px-4 py-3 rounded-xl transition text-gray-400"
+                    data-tab="overview"
+                  >
+                    Dashboard
+                  </button>
+                  <button
+                    class="tab-btn w-full text-left px-4 py-3 rounded-xl transition text-gray-400"
+                    data-tab="neural"
+                  >
+                    Neural Streams
+                  </button>
+                  <button
+                    class="tab-btn w-full text-left px-4 py-3 rounded-xl transition text-gray-400"
+                    data-tab="transactions"
+                  >
+                    CHC Ledger
+                  </button>
+                  <button
+                    class="tab-btn w-full text-left px-4 py-3 rounded-xl transition text-gray-400"
+                    data-tab="security"
+                  >
+                    Security Matrix
+                  </button>
+                </nav>
+                <div
+                  class="mt-auto p-4 bg-indigo-900/20 rounded-xl border border-indigo-500/30"
+                >
+                  <p
+                    class="text-xs text-indigo-300 font-bold uppercase tracking-widest"
+                  >
+                    Quantum Ops
+                  </p>
+                  <p class="text-lg font-bold text-white mt-1">99.98%</p>
+                  <div
+                    class="w-full h-1 bg-gray-800 mt-2 rounded-full overflow-hidden"
+                  >
+                    <div class="w-4/5 h-full bg-indigo-500"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content Area -->
+              <div
+                class="flex-grow p-8 overflow-y-auto bg-gradient-to-br from-gray-900 to-black"
+              >
+                <div id="overview" class="tab-content space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                      class="bg-gray-800/40 p-6 rounded-2xl border border-gray-700 hover:border-indigo-500/50 transition"
+                    >
+                      <p class="text-gray-500 text-xs font-bold uppercase">
+                        Memory Synced
+                      </p>
+                      <h4 class="text-3xl font-extrabold text-white mt-2">
+                        1.2 PB
+                      </h4>
+                      <p class="text-green-500 text-xs mt-1">↑ 12% from YTD</p>
+                    </div>
+                    <div
+                      class="bg-gray-800/40 p-6 rounded-2xl border border-gray-700 hover:border-pink-500/50 transition"
+                    >
+                      <p class="text-gray-500 text-xs font-bold uppercase">
+                        Active Persons
+                      </p>
+                      <h4 class="text-3xl font-extrabold text-white mt-2">
+                        142
+                      </h4>
+                      <p class="text-indigo-500 text-xs mt-1">Live Archival</p>
+                    </div>
+                    <div
+                      class="bg-gray-800/40 p-6 rounded-2xl border border-gray-700 hover:border-purple-500/50 transition"
+                    >
+                      <p class="text-gray-500 text-xs font-bold uppercase">
+                        CHC Wallet
+                      </p>
+                      <h4 class="text-3xl font-extrabold text-white mt-2">
+                        24,500
+                      </h4>
+                      <p class="text-gray-400 text-xs mt-1">≈ $120,450.00</p>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-gray-800/20 border border-gray-800 rounded-2xl p-6 h-48 flex items-center justify-center text-gray-600 font-mono text-sm"
+                  >
+                    [ Interactive Quantum Graph Placeholder ]
+                  </div>
+                </div>
+
+                <div id="neural" class="tab-content hidden space-y-4">
+                  <h4 class="text-xl font-bold text-white">
+                    Live Consciousness Streams
+                  </h4>
+                  <div class="space-y-3">
+                    <div
+                      class="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl"
+                    >
+                      <div class="flex items-center">
+                        <span
+                          class="w-2 h-2 rounded-full bg-green-500 mr-3"
+                        ></span>
+                        <span class="text-gray-300"
+                          >Subject-001 (Founding CEO)</span
+                        >
+                      </div>
+                      <span class="text-xs text-gray-500"
+                        >Sync Strength: 98%</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl opacity-50"
+                    >
+                      <div class="flex items-center">
+                        <span
+                          class="w-2 h-2 rounded-full bg-gray-500 mr-3"
+                        ></span>
+                        <span class="text-gray-300"
+                          >Subject-002 (Legacy Archive)</span
+                        >
+                      </div>
+                      <span class="text-xs text-gray-500">Offline</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="transactions" class="tab-content hidden">
+                  <h4 class="text-xl font-bold text-white mb-4">
+                    CHC Transaction Ledger
+                  </h4>
+                  <table class="w-full text-left text-sm text-gray-400">
+                    <thead
+                      class="text-xs uppercase text-gray-600 border-b border-gray-800"
+                    >
+                      <tr>
+                        <th class="py-3">Hash</th>
+                        <th class="py-3">Amount</th>
+                        <th class="py-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800/50">
+                      <tr>
+                        <td class="py-3 font-mono">0x4a...f92</td>
+                        <td class="py-3 text-white">450 CHC</td>
+                        <td class="py-3 text-green-500 italic">Confirmed</td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 font-mono">0x12...a84</td>
+                        <td class="py-3 text-white">1,200 CHC</td>
+                        <td class="py-3 text-green-500 italic">Confirmed</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div id="security" class="tab-content hidden text-center py-20">
+                  <div class="loader"></div>
+                  <p class="text-indigo-400 font-mono mt-4">
+                    Calibrating Security Matrix...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Overlay for Blocked View -->
+            <div
+              class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center group-hover:backdrop-blur-none transition-all duration-700"
+            >
+              <div
+                class="bg-gray-900/90 border border-gray-700 px-8 py-6 rounded-2xl text-center"
+              >
+                <h4 class="text-2xl font-bold text-white mb-2">
+                  Restricted Access
+                </h4>
+                <p class="text-gray-400 mb-6">
+                  Demo mode active. Login for real-time quantum control.
+                </p>
+                <button
+                  data-modal-target="loginModal"
+                  class="login-btn bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold transition"
+                >
+                  Connect Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Get in Touch Section -->
+      <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+          <div
+            class="bg-gray-900 rounded-2xl p-8 md:p-12 border border-gray-800 lg:flex lg:items-center lg:justify-between lightning-border"
           >
             <div class="lg:w-1/2">
               <h3 class="text-3xl md:text-4xl font-bold text-white">
@@ -900,7 +1137,8 @@
               </h3>
               <p class="text-gray-400 mt-4">
                 Let's connect. Whether you're a researcher, a startup, or an
-                enterprise, we're ready to help you build the future.
+                enterprise, we're ready to help you build the future of
+                technology.
               </p>
             </div>
             <div class="lg:w-1/2 mt-8 lg:mt-0 lg:pl-12">
@@ -933,7 +1171,7 @@
                 </button>
               </form>
               <p id="form-message" class="mt-4 text-green-400 hidden">
-                Thank you for your message! We'll get back to you soon.
+                Thank you! Your message has been sent.
               </p>
             </div>
           </div>
@@ -945,267 +1183,554 @@
     <footer class="bg-black border-t border-gray-900">
       <div class="container mx-auto px-6 py-12">
         <div class="grid md:grid-cols-4 gap-8">
-          <div>
+          <div class="md:col-span-1">
             <h3 class="text-xl font-bold gradient-text">ChitraHarsha Smriti</h3>
-            <p class="text-gray-400 mt-2">Designing the future of cognition.</p>
+            <p class="text-gray-400 mt-2 text-sm">
+              Pioneering The AI - Driven Innovations.
+            </p>
           </div>
           <div>
             <h4 class="text-lg font-semibold text-white">Quick Links</h4>
             <ul class="mt-4 space-y-2">
               <li>
-                <a href="#home" class="text-gray-400 hover:text-white">Home</a>
+                <a
+                  href="#home"
+                  class="text-gray-400 hover:text-white transition"
+                  >Home</a
+                >
               </li>
               <li>
-                <a href="#features" class="text-gray-400 hover:text-white"
+                <a
+                  href="#features"
+                  class="text-gray-400 hover:text-white transition"
                   >Features</a
                 >
               </li>
               <li>
-                <a href="#blogs" class="text-gray-400 hover:text-white"
+                <a
+                  href="#blogs"
+                  class="text-gray-400 hover:text-white transition"
                   >Blogs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact Us</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold text-white">Legal</h4>
+            <h4 class="text-lg font-semibold text-white">Legal & Support</h4>
             <ul class="mt-4 space-y-2">
               <li>
-                <a href="#" class="text-gray-400 hover:text-white">FAQs</a>
+                <button
+                  data-modal-target="faqModal"
+                  class="modal-trigger text-gray-400 hover:text-white transition text-left"
+                >
+                  FAQs
+                </button>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Privacy Policy</a
+                <button
+                  data-modal-target="privacyModal"
+                  class="modal-trigger text-gray-400 hover:text-white transition text-left"
                 >
+                  Privacy Policy
+                </button>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Terms & Conditions</a
+                <button
+                  data-modal-target="termsModal"
+                  class="modal-trigger text-gray-400 hover:text-white transition text-left"
                 >
+                  Terms & Conditions
+                </button>
               </li>
             </ul>
           </div>
           <div>
             <h4 class="text-lg font-semibold text-white">Follow Us</h4>
-            <!-- Social media icons can be added here -->
+            <div class="flex space-x-4 mt-4">
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2zM8.21 10.91v5.58h2.22v-5.58H8.21zm1.11-3.009c-.733 0-1.325-.592-1.325-1.325s.592-1.325 1.325-1.325s1.325.592 1.325 1.325s-.592 1.325-1.325 1.325zm5.17 3.009v5.58h2.22v-5.23c0-1.25.025-2.858 1.74-2.858c1.714 0 1.98 1.34 1.98 2.76v5.328h2.22V10.91h-2.13v.975h.03c.295-.556 1.01-1.14 2.1-1.14c2.25 0 2.66 1.48 2.66 3.4v3.91h-2.22v-5.23c0-1.25-.025-2.858-1.74-2.858c-1.714 0-1.98 1.34-1.98 2.76v5.328H14.5z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
         <div
-          class="mt-12 border-t border-gray-800 pt-8 text-center text-gray-500"
+          class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
         >
           <p>
-            &copy; 2025 ChitraHarsha Smriti. A Chitra-Harshul Initiative. All
-            Rights Reserved.
+            &copy; 2026 The ChitraHarshaVPK Ventures Pvt Ltd. A Chitra-Harshul
+            Initiative. All Rights Reserved.
+          </p>
+          <p class="mt-2 text-xs">
+            Registered Office: CHV-VPK Tower, Quantum District,
+            <a
+              href="https://github.com/infinity-aggarwalharshul/The-ChitraHarshaSmriti-App.git"
+              class="hover:underline"
+              >GitHub Repository</a
+            >
           </p>
         </div>
       </div>
     </footer>
 
-    <!-- Modals -->
-    <!-- Login/Sign Up Modal -->
-    <div
-      id="authModal"
-      class="modal modal-hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50"
-    >
+    <!-- All Modals Container -->
+    <div id="modal-container">
+      <!-- Login Modal (existing, but can be triggered by new logic) -->
       <div
-        class="bg-gray-900 w-full max-w-md mx-auto rounded-2xl shadow-lg border border-gray-800 p-8 relative"
+        id="loginModal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
       >
-        <button
-          id="closeAuthModalBtn"
-          class="absolute top-4 right-4 text-gray-500 hover:text-white"
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-md mx-auto border border-gray-700 p-8 z-10"
         >
-          &times;
-        </button>
-
-        <div class="flex border-b border-gray-700 mb-6">
-          <button
-            id="loginTab"
-            class="py-2 px-4 text-indigo-400 border-b-2 border-indigo-400 font-semibold"
-          >
-            Login
+          <!-- Login form content here -->
+          <h3 class="text-2xl font-bold text-white text-center">
+            Welcome Back
+          </h3>
+          <p class="text-gray-400 text-center mt-2">
+            Login to access the future.
+          </p>
+          <button class="absolute top-4 right-4 text-gray-500 hover:text-white">
+            &times;
           </button>
-          <button id="signupTab" class="py-2 px-4 text-gray-400">
-            Sign Up
-          </button>
-        </div>
-
-        <!-- Login Form -->
-        <div id="loginFormContainer">
-          <form>
-            <input
-              type="email"
-              placeholder="Email"
-              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-            <button
-              type="submit"
-              class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
-            >
-              Login
-            </button>
-            <p class="text-center text-gray-400 my-4">OR</p>
-            <button
-              type="button"
-              class="w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
-            >
-              Sign in with Passkey
-            </button>
-          </form>
-        </div>
-
-        <!-- Signup Form -->
-        <div id="signupFormContainer" class="hidden">
-          <form>
-            <input
-              type="email"
-              placeholder="Email"
-              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
-              required
-            />
-            <div class="flex gap-4">
-              <input
-                type="text"
-                placeholder="Enter OTP"
-                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              <button
-                type="button"
-                class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition shrink-0"
-              >
-                Send OTP
-              </button>
-            </div>
-            <input
-              type="password"
-              placeholder="Create Password"
-              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-4"
-              required
-            />
-            <button
-              type="submit"
-              class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
-            >
-              Create Account
-            </button>
-          </form>
         </div>
       </div>
-    </div>
 
-    <!-- Summary Modal -->
-    <div
-      id="summaryModal"
-      class="modal modal-hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50"
-    >
+      <!-- Download Client Modal -->
       <div
-        class="bg-gray-900 w-full max-w-lg mx-auto rounded-2xl shadow-lg border border-gray-800 p-8 relative"
+        id="downloadModal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
       >
-        <button
-          id="closeSummaryModalBtn"
-          class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-lg mx-auto border border-gray-700 p-8 z-10 text-center"
         >
-          &times;
-        </button>
-        <h3 id="summaryModalTitle" class="text-2xl font-bold text-white mb-4">
-          AI Summary
-        </h3>
-        <div id="summaryModalContent" class="text-gray-300 gemini-output"></div>
+          <h3 class="text-2xl font-bold text-white">Download Secure Client</h3>
+          <p class="text-gray-400 mt-2 mb-6">
+            Select your operating system. The download will begin automatically.
+          </p>
+          <div class="space-y-4">
+            <a
+              href="#"
+              class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+              >Download for Windows</a
+            >
+            <a
+              href="#"
+              class="block w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+              >Download for macOS</a
+            >
+            <a
+              href="#"
+              class="block w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition"
+              >Download for Linux</a
+            >
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+
+      <!-- Blog Modals -->
+      <div
+        id="blog1Modal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>
+              The Quantum Leap: How Quantum AI Will Redefine Enterprise Data
+            </h2>
+            <p>
+              The digital world has been built on a simple premise: the bit, a
+              unit of information that can be either a 0 or a 1. For decades,
+              this binary system has served us well, leading to the creation of
+              supercomputers capable of trillions of calculations per second.
+              However, we are approaching the physical limits of this
+              technology. The problems of tomorrow—in medicine, climate science,
+              materials science, and finance—are too complex for even the most
+              powerful classical computers. This is where quantum computing
+              enters the picture.
+            </p>
+            <p class="mt-4">
+              Unlike bits, a quantum bit, or 'qubit,' can exist as a 0, a 1, or
+              both simultaneously (a state known as superposition). This,
+              combined with another quantum phenomenon called entanglement,
+              allows quantum computers to process a vast number of calculations
+              in parallel. The result is an exponential increase in computing
+              power. When we fuse this power with Artificial Intelligence, we
+              get Quantum AI—a paradigm shift that will redefine what's
+              possible. It will allow us to simulate complex molecular
+              interactions to discover new drugs, create unbreakable encryption,
+              and optimize global logistics networks with an efficiency we can
+              only dream of today.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div
+        id="blog2Modal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>
+              Decentralized Trust: Why Blockchain is the Future of Data Security
+            </h2>
+            <p>
+              In a centralized data model, trust is placed in a single entity—a
+              company, a bank, a government—to maintain the integrity of a
+              database. This creates a single point of failure, making it a
+              prime target for cyberattacks. Blockchain technology fundamentally
+              changes this model. Instead of one central ledger, a blockchain is
+              a distributed, decentralized ledger shared across a network of
+              computers.
+            </p>
+            <p class="mt-4">
+              Every transaction or data entry is grouped into a 'block' and
+              added to the 'chain.' Each block is cryptographically linked to
+              the one before it, creating an immutable and chronological record.
+              To alter any data, a hacker would need to simultaneously gain
+              control of more than 50% of the computers in the network—a
+              near-impossible feat. This is the power of decentralized trust. At
+              ChitraHarsha Smriti, we use a private blockchain to encrypt and
+              secure your most sensitive data, ensuring its integrity and
+              provenance are mathematically guaranteed, not just promised.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div
+        id="blog3Modal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>
+              The Ethics of a Digital Mind: Navigating the Future of
+              Consciousness
+            </h2>
+            <p>
+              The prospect of digitizing human consciousness is perhaps one of
+              the most profound technological advancements humanity has ever
+              faced. It opens up incredible possibilities: preserving the wisdom
+              of generations, achieving a form of digital immortality, and
+              allowing us to explore the very nature of our thoughts and
+              memories. However, with this great power comes immense
+              responsibility.
+            </p>
+            <p class="mt-4">
+              We must ask ourselves critical questions. Who owns a digital
+              consciousness? What are the rights of a digital mind? How do we
+              ensure privacy and prevent unauthorized access or manipulation? At
+              The ChitraHarshaVPK Ventures, we believe that the development of
+              this technology must go hand-in-hand with the development of a
+              robust ethical framework. We are committed to working with
+              ethicists, policymakers, and the public to create standards that
+              prioritize individual autonomy, privacy, and security, ensuring
+              that this leap into the future is one that benefits all of
+              humanity, safely and equitably.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+
+      <!-- Legal Modals -->
+      <div
+        id="faqModal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>Frequently Asked Questions (FAQs)</h2>
+            <h3>What is ChitraHarsha Smriti?</h3>
+            <p>
+              ChitraHarsha Smriti is a pioneering enterprise software platform
+              that integrates quantum AI, neurotechnology, and blockchain to
+              manage and analyze both complex enterprise data and digitized
+              human consciousness.
+            </p>
+            <h3>How is my data secured?</h3>
+            <p>
+              We employ a multi-layered security approach. All sensitive data is
+              encrypted and recorded on a private blockchain, making it
+              immutable and tamper-proof. We also provide a Proactive Security
+              Suite that includes safe browsing and dark web monitoring for your
+              credentials.
+            </p>
+            <h3>What is The ChitraHarsha Crypto (CHC)?</h3>
+            <p>
+              CHC is our native cryptocurrency, designed for secure and
+              efficient transactions within the platform. It can be used for
+              subscription payments, accessing premium features, and investing
+              in the ecosystem's growth.
+            </p>
+            <h3>What operating systems does the desktop client support?</h3>
+            <p>
+              The secure desktop client is available for Windows, macOS, and
+              Linux to ensure a seamless, native experience across all major
+              platforms.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div
+        id="privacyModal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>Privacy Policy</h2>
+            <p><strong>Last Updated:</strong> October 2025</p>
+            <h3>Information We Collect</h3>
+            <p>
+              We collect information you provide during registration, such as
+              your name, contact details, and verification data. We also collect
+              usage data to improve our services. All data related to digitized
+              consciousness is encrypted client-side before being stored.
+            </p>
+            <h3>How We Use Your Information</h3>
+            <p>
+              Your data is used to provide and maintain our services, process
+              transactions, enhance security, and for research and development
+              purposes. We will never sell your personal data.
+            </p>
+            <h3>Data Security</h3>
+            <p>
+              We are committed to protecting your data. We use industry-leading
+              security measures, including end-to-end encryption and a private
+              blockchain architecture to ensure the integrity and
+              confidentiality of your information. Data is stored on secure
+              Google Cloud servers.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div
+        id="termsModal"
+        class="modal modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="modal-overlay absolute inset-0 bg-black bg-opacity-70"
+        ></div>
+        <div
+          class="modal-content bg-gray-900 rounded-2xl w-full max-w-3xl mx-auto border border-gray-700 z-10"
+        >
+          <div class="p-8 max-h-[80vh] overflow-y-auto modal-body">
+            <h2>Terms & Conditions</h2>
+            <h3>1. Acceptance of Terms</h3>
+            <p>
+              By accessing or using the ChitraHarsha Smriti platform, you agree
+              to be bound by these Terms & Conditions and our Privacy Policy.
+            </p>
+            <h3>2. User Responsibilities</h3>
+            <p>
+              You are responsible for maintaining the confidentiality of your
+              account, including your password and passkeys. You agree to use
+              the service for lawful purposes only and not to upload any
+              malicious or illegal content.
+            </p>
+            <h3>3. Intellectual Property</h3>
+            <p>
+              The ChitraHarsha Smriti platform, its logos, and its software are
+              the exclusive property of The ChitraHarshaVPK Ventures Pvt Ltd.
+              You retain full ownership of the data and digitized consciousness
+              you upload to the platform.
+            </p>
+            <h3>4. Disclaimer</h3>
+            <p>
+              The service is provided "as is" without any warranties. We do not
+              guarantee that the service will be error-free or uninterrupted.
+            </p>
+          </div>
+          <button
+            class="modal-close absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"
+          >
+            &times;
+          </button>
+        </div>
       </div>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- Gemini API Configuration ---
-        const API_KEY = ""; // Kept empty as per instructions
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        // --- Global State Simulation ---
+        let isUserLoggedIn = false; // Simulate user login state
 
-        async function callGeminiAPI(prompt, outputElement) {
-          outputElement.innerHTML = '<div class="loader"></div>';
+        // --- Modal Control ---
+        const modalTriggers = document.querySelectorAll(
+          ".modal-trigger, .login-btn",
+        );
+        const modals = document.querySelectorAll(".modal");
+        const modalCloses = document.querySelectorAll(
+          ".modal-close, .modal-overlay",
+        );
 
-          const payload = {
-            contents: [{ parts: [{ text: prompt }] }],
-          };
-
-          try {
-            const response = await fetch(API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-              throw new Error(`API Error: ${response.statusText}`);
-            }
-
-            const result = await response.json();
-            const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-            if (text) {
-              outputElement.innerHTML = text.replace(/\n/g, "<br>");
-            } else {
-              outputElement.innerHTML =
-                '<p class="text-red-400">Could not generate a response. Please try again.</p>';
-            }
-          } catch (error) {
-            console.error("Gemini API call failed:", error);
-            outputElement.innerHTML = `<p class="text-red-400">An error occurred: ${error.message}</p>`;
+        const openModal = (modalId) => {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.remove("modal-hidden");
           }
-        }
+        };
 
-        // --- AI Design Draft Generator / Consciousness Query ---
-        const generateDesignBtn = document.getElementById(
-          "generate-design-btn"
-        );
-        const designPromptInput = document.getElementById("design-prompt");
-        const designOutputDiv = document.getElementById("design-output");
+        const closeModal = (modal) => {
+          modal.classList.add("modal-hidden");
+        };
 
-        generateDesignBtn.addEventListener("click", () => {
-          const userInput = designPromptInput.value;
-          if (!userInput.trim()) {
-            designOutputDiv.innerHTML =
-              '<p class="text-yellow-400">Please enter a query first.</p>';
-            return;
-          }
-          const prompt = `You are the AI interface for the ChitraHarsha Smriti platform, which stores human consciousness. A user is querying their archived memory. The query is: "${userInput}". Respond as if you are retrieving a memory, providing a descriptive, slightly narrative answer. If the query is technical, provide a plausible technical explanation related to the memory data structure. Format the response as a simple paragraph.`;
-          callGeminiAPI(prompt, designOutputDiv);
-        });
-
-        // --- Blog Summarizer ---
-        const summaryModal = document.getElementById("summaryModal");
-        const closeSummaryModalBtn = document.getElementById(
-          "closeSummaryModalBtn"
-        );
-        const summaryModalTitle = document.getElementById("summaryModalTitle");
-        const summaryModalContent = document.getElementById(
-          "summaryModalContent"
-        );
-
-        document.querySelectorAll(".summarize-btn").forEach((button) => {
-          button.addEventListener("click", (e) => {
-            const card = e.target.closest(".group");
-            const title = card.querySelector("h4").innerText;
-            const content = card.querySelector("p").innerText;
-
-            summaryModalTitle.innerText = `AI Summary: ${title}`;
-            summaryModal.classList.remove("modal-hidden");
-
-            const prompt = `Summarize the following blog post content into three concise bullet points. The content is about "${title}". The text is: "${content}". Format the output as an unordered HTML list (<ul><li>...</li></ul>).`;
-            callGeminiAPI(prompt, summaryModalContent);
+        modalTriggers.forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const modalId = trigger.getAttribute("data-modal-target");
+            openModal(modalId);
           });
         });
 
-        const closeSummaryModal = () =>
-          summaryModal.classList.add("modal-hidden");
-        closeSummaryModalBtn.addEventListener("click", closeSummaryModal);
-        summaryModal.addEventListener("click", (e) => {
-          if (e.target === summaryModal) closeSummaryModal();
+        modalCloses.forEach((close) => {
+          close.addEventListener("click", () => {
+            closeModal(close.closest(".modal"));
+          });
+        });
+
+        // --- Download Button Logic ---
+        const downloadTriggers = document.querySelectorAll(".download-trigger");
+        downloadTriggers.forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            if (isUserLoggedIn) {
+              openModal("downloadModal");
+            } else {
+              openModal("loginModal");
+            }
+          });
+        });
+
+        // --- Login Simulation for Demo ---
+        // This is a placeholder. In a real app, this would be handled by an auth system.
+        const loginModalElement = document.getElementById("loginModal");
+        // Let's pretend the user logs in by clicking inside the login modal
+        loginModalElement.addEventListener("click", (e) => {
+          if (e.target.tagName !== "BUTTON") {
+            // Don't trigger on close button
+            isUserLoggedIn = true;
+            closeModal(loginModalElement);
+            // For demo, show a confirmation
+            alert(
+              "You are now 'logged in'. Click 'Download Client' again to see the options.",
+            );
+          }
+        });
+
+        // --- ERP Portal Tabs ---
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            const tabId = button.getAttribute("data-tab");
+            tabContents.forEach((content) => {
+              content.classList.toggle("hidden", content.id !== tabId);
+            });
+          });
         });
 
         // --- Mobile Menu Toggle ---
@@ -1213,26 +1738,6 @@
         const mobileMenu = document.getElementById("mobile-menu");
         mobileMenuButton.addEventListener("click", () => {
           mobileMenu.classList.toggle("hidden");
-        });
-
-        // --- Currency Toggle ---
-        const currencyToggle = document.getElementById("currency-toggle");
-        const priceElements = document.querySelectorAll("[data-price-usd]");
-        currencyToggle.addEventListener("change", () => {
-          const isINR = currencyToggle.checked;
-          priceElements.forEach((el) => {
-            const priceUSD = el.getAttribute("data-price-usd");
-            const priceINR = el.getAttribute("data-price-inr");
-            if (priceUSD === "0") {
-              el.innerHTML = isINR ? `₹${priceINR}` : `$${priceUSD}`;
-              return;
-            }
-            if (priceUSD === "Custom") {
-              el.innerHTML = `Custom`;
-              return;
-            }
-            el.innerHTML = isINR ? `₹${priceINR}` : `$${priceUSD}`;
-          });
         });
 
         // --- Contact Form Submission ---
@@ -1245,49 +1750,6 @@
           setTimeout(() => {
             formMessage.classList.add("hidden");
           }, 5000);
-        });
-
-        // --- Auth Modal Logic ---
-        const authModal = document.getElementById("authModal");
-        const openModalBtns = [
-          document.getElementById("loginBtn"),
-          document.getElementById("loginBtnMobile"),
-        ];
-        const closeModalBtn = document.getElementById("closeAuthModalBtn");
-
-        const loginTab = document.getElementById("loginTab");
-        const signupTab = document.getElementById("signupTab");
-        const loginForm = document.getElementById("loginFormContainer");
-        const signupForm = document.getElementById("signupFormContainer");
-
-        openModalBtns.forEach((btn) => {
-          btn.addEventListener("click", () =>
-            authModal.classList.remove("modal-hidden")
-          );
-        });
-
-        const closeModal = () => authModal.classList.add("modal-hidden");
-        closeModalBtn.addEventListener("click", closeModal);
-        authModal.addEventListener("click", (e) => {
-          if (e.target === authModal) closeModal();
-        });
-
-        loginTab.addEventListener("click", () => {
-          loginTab.classList.add("text-indigo-400", "border-indigo-400");
-          loginTab.classList.remove("text-gray-400");
-          signupTab.classList.add("text-gray-400");
-          signupTab.classList.remove("text-indigo-400", "border-indigo-400");
-          loginForm.classList.remove("hidden");
-          signupForm.classList.add("hidden");
-        });
-
-        signupTab.addEventListener("click", () => {
-          signupTab.classList.add("text-indigo-400", "border-indigo-400");
-          signupTab.classList.remove("text-gray-400");
-          loginTab.classList.add("text-gray-400");
-          loginTab.classList.remove("text-indigo-400", "border-indigo-400");
-          signupForm.classList.remove("hidden");
-          loginForm.classList.add("hidden");
         });
       });
     </script>
